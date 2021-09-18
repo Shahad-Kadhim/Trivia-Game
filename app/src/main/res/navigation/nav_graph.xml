@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.triviatask.ui.fragments.HomeFragment"
+        android:name="com.example.triviatask.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.example.triviatask.ui.fragments.GameFragment"
+        android:name="com.example.triviatask.ui.game.GameFragment"
         android:label="GameFragment"
         tools:layout="@layout/fragment_game">
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.triviatask.ui.fragments.ResultFragment"
+        android:name="com.example.triviatask.ui.result.ResultFragment"
         android:label="ResultFragment"
         tools:layout="@layout/fragment_result">
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.triviatask.ui.fragments.SettingFragment"
+        android:name="com.example.triviatask.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"/>
 </navigation>

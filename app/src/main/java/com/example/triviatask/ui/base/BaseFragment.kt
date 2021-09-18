@@ -1,4 +1,4 @@
-package com.example.triviatask.ui.fragments
+package com.example.triviatask.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,8 @@ abstract class BaseFragment<VB:ViewBinding>(): Fragment() {
     var binding:VB?
     get() = _binding as VB?
     set(value) = TODO()
+
+    abstract val viewModel:BaseViewModel
 
     abstract val bindingInflater : (LayoutInflater,Int,ViewGroup?,Boolean) -> VB
 

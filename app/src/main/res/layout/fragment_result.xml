@@ -3,6 +3,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.triviatask.ui.result.ResultViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
