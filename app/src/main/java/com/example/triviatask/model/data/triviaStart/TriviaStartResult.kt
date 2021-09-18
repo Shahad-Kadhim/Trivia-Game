@@ -1,4 +1,4 @@
-package com.example.triviatask.model
+package com.example.triviatask.model.data.triviaStart
 
 
 import com.google.gson.annotations.SerializedName

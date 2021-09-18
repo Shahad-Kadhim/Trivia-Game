@@ -1,4 +1,4 @@
-package com.example.triviatask.network
+package com.example.triviatask.model.network
 
 import com.example.triviatask.utils.Constant.BASE_URL
 import okhttp3.OkHttpClient

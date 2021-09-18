@@ -1,6 +1,6 @@
-package com.example.triviatask.network
+package com.example.triviatask.model.network
 
-import com.example.triviatask.model.TriviaStartResponse
+import com.example.triviatask.model.data.triviaStart.TriviaStartResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +13,7 @@ interface TriviaApiService {
         @Query("api_category") categoryKey: String,
         @Query("api_count_global") apiCountGlobal: String,
         @Query("token") token: String,
+        @Query("api_category") apiCategory: String,
     ): Response<TriviaStartResponse>
 
 }
