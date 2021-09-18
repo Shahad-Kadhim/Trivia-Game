@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ApiCountGlobalResponse(
     @SerializedName("categories")
-    val categories: Categories,
+    val categories: Categories?,
     @SerializedName("overall")
-    val overall: Overall
+    val overall: Overall?
 )
