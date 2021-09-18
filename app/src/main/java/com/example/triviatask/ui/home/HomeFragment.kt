@@ -1,11 +1,14 @@
 package com.example.triviatask.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
+import com.example.triviatask.model.Repository
+import com.example.triviatask.model.State
 import com.example.triviatask.ui.base.BaseFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
@@ -21,6 +24,19 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
         }
+        viewModel.observe(Repository.getQuestion(),{
+            if(it is State.Success)
+                Log.i("TAG", it.data.toString())
+            else if(it is State.Loading)
+                Log.i("TAG","Loaing")
+            else
+                Log.i("TAG","error")
+
+        },{
+            Log.i("TAG", it.message.toString())
+
+        })
+
     }
 
 

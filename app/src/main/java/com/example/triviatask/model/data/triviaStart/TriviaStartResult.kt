@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 
 data class TriviaStartResult(
     @SerializedName("category")
-    val category: String,
+    val category: String?=null,
     @SerializedName("correct_answer")
-    val correctAnswer: String,
+    val correctAnswer: String?=null,
     @SerializedName("difficulty")
-    val difficulty: String,
+    val difficulty: String?=null,
     @SerializedName("incorrect_answers")
-    val incorrectAnswers: List<String>,
+    val incorrectAnswers: List<String>?=null,
     @SerializedName("question")
-    val question: String,
+    val question: String?=null,
     @SerializedName("type")
-    val type: String
+    val type: String?=null
 )

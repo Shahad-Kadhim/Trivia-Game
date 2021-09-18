@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TriviaStartResponse(
     @SerializedName("response_code")
-    val responseCode: Int,
+    val responseCode: Int?=null,
     @SerializedName("results")
-    val results: List<TriviaStartResult>
+    val results: List<TriviaStartResult>?=null
 )

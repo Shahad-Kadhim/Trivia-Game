@@ -1,10 +1,10 @@
 package com.example.triviatask.ui.base
 
 import androidx.lifecycle.ViewModel
+import com.example.triviatask.utils.add
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 abstract class BaseViewModel:ViewModel() {
@@ -22,7 +22,4 @@ abstract class BaseViewModel:ViewModel() {
             .subscribe(onSuccess,onError).add(disposable)
     }
 
-    private fun Disposable.add(compositeDisposable: CompositeDisposable){
-        compositeDisposable.add(this)
-    }
 }
