@@ -39,7 +39,7 @@
             android:id="@+id/action_resultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="score"
+            android:name="Score_Game"
             app:argType="integer" />
     </fragment>
     <fragment
