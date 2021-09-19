@@ -37,7 +37,6 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
             playAgainBtn.onClickGoToFragment(R.id.gameFragment)
             backBtn.onClickGoToFragment(R.id.homeFragment)
         }
-
     }
 
     private fun getScores() {
