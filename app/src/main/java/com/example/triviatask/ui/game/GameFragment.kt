@@ -24,4 +24,6 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
             this.viewModel=this@GameFragment.viewModel
         }
     }
+
+    override fun addCallbacks() {   }
 }

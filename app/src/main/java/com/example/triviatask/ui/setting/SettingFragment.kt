@@ -22,4 +22,6 @@ class SettingFragment: BaseFragment<FragmentSettingBinding>() {
             this.viewModel=this@SettingFragment.viewModel
         }
     }
+
+    override fun addCallbacks() {   }
 }
