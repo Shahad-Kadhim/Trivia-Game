@@ -1,14 +1,11 @@
 package com.example.triviatask.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
-import com.example.triviatask.model.OptionsSelected
 import com.example.triviatask.ui.base.BaseFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {

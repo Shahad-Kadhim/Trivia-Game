@@ -1,6 +1,5 @@
 package com.example.triviatask.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.model.OptionsSelected
@@ -8,13 +7,14 @@ import com.example.triviatask.model.Repository
 import com.example.triviatask.model.State
 import com.example.triviatask.model.data.apiCategory.ApiCategoryResponse
 import com.example.triviatask.ui.base.BaseViewModel
+import com.example.triviatask.utils.Constant
 
 class HomeViewModel:BaseViewModel(){
 
-    var categoryGameId = MutableLiveData<String>()
-    var questionNumber = MutableLiveData<Int>()
-    var difficultyGame = MutableLiveData<String>()
-    var gameType = MutableLiveData<String>()
+    val gameCategory = MutableLiveData<String>()
+    val difficultyGame = MutableLiveData(0)
+    val gameType = MutableLiveData(0)
+    val questionNumber = MutableLiveData(1)
 
 
     private val _categoryList = MutableLiveData<ApiCategoryResponse>()
@@ -37,15 +37,16 @@ class HomeViewModel:BaseViewModel(){
 
 
     fun onClickStartGame(){
-//        OptionsSelected(
-//            categoryGameId.value,
-//            questionNumber.value,
-//            difficultyGame.value,
-//            gameType.value
-//        )
-
-        Log.i("kkkk", categoryGameId.value.toString())
+        OptionsSelected(
+            getCategoryId(),
+            questionNumber.value,
+            Constant.difficulty[difficultyGame.value!!],
+            Constant.gameType[gameType.value!!]
+        )
     }
 
-
+    private fun getCategoryId(): Int {
+        return categoryList.value?.triviaCategories?.filter {
+            it.name == gameCategory.value }?.map { it.id }!!.first()
+    }
 }
