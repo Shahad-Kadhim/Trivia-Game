@@ -13,6 +13,7 @@ class OptionsAdapter (
 }
 
 
+
 interface OptionInteractionListener: BaseInteractionListener{
     fun onClickOption(option: String)
 }
