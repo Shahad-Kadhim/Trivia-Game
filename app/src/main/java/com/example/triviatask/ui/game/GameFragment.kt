@@ -15,7 +15,8 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
 
     override val viewModel :GameViewModel by viewModels()
 
-    override val bindingInflater: (LayoutInflater,Int,ViewGroup?,Boolean) -> FragmentGameBinding =DataBindingUtil::inflate
+    override val bindingInflater: (LayoutInflater,Int,ViewGroup?,Boolean)
+    -> FragmentGameBinding =DataBindingUtil::inflate
 
 
     override fun setUp() {

@@ -10,6 +10,7 @@ import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.Constant
+import com.example.triviatask.utils.onClickGoToFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
@@ -25,11 +26,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
 
-            button.setOnClickListener { view ->
-                Navigation.findNavController(view).navigate(R.id.resultFragment , Bundle().apply {
-                    putInt(Constant.SCORE_GAME , 7)
-                })
-            }
         }
     }
 

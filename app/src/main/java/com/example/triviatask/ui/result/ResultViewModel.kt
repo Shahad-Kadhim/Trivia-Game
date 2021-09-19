@@ -6,15 +6,15 @@ import com.example.triviatask.ui.base.BaseViewModel
 class ResultViewModel: BaseViewModel() {
 
     var finalScore = MutableLiveData<Int>()
-    var iv = MutableLiveData<Boolean>()
+    var liveDataEvent = MutableLiveData<Boolean>(false)
 
 
     fun setScore(score: Int){
         finalScore.postValue(score)
     }
 
-    fun onClickExist(){
+    fun onClickExist(isExist : Boolean){
+        liveDataEvent.postValue(isExist)
     }
-
 
 }

@@ -1,7 +1,9 @@
 package com.example.triviatask.ui.result
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -9,6 +11,7 @@ import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentResultBinding
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.Constant.SCORE_GAME
+import com.example.triviatask.utils.goToFragment
 import com.example.triviatask.utils.onClickGoToFragment
 
 
@@ -32,11 +35,9 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
     }
 
     override fun addCallbacks() {
-
-        binding?.apply {
-            backBtn.onClickGoToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
-        }
-
+        viewModel.liveDataEvent.observe(this , {
+            binding!!.backBtn.goToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
+        })
     }
 
     private fun setScores() = viewModel.setScore(Bundle(arguments).getInt(SCORE_GAME))

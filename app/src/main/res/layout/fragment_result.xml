@@ -78,6 +78,7 @@
             android:text="Exist"
             android:layout_marginHorizontal="35dp"
             android:paddingVertical="10dp"
+            android:onClick="@{() -> viewModel.onClickExist(true)}"
             android:backgroundTint="#6caea6"
             android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
