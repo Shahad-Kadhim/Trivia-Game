@@ -27,8 +27,6 @@ class GameFragment: BaseFragment<FragmentGameBinding>() , GameInteractionListene
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@GameFragment.viewModel
 
-            recyclerGame.adapter =  GameAdapter(emptyList() , this@GameFragment)
-
         }
     }
 

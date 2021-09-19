@@ -8,7 +8,6 @@ class ResultViewModel: BaseViewModel() {
     var finalScore = MutableLiveData<Int>()
     var liveDataEvent = MutableLiveData<Boolean>()
 
-
     fun setScore(score: Int){
         finalScore.postValue(score)
     }

@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentSettingBinding
 import com.example.triviatask.model.data.domain.GameData
-import com.example.triviatask.ui.adapter.GameAdapter
 import com.example.triviatask.ui.adapter.GameInteractionListener
 import com.example.triviatask.ui.base.BaseFragment
 
@@ -17,14 +16,14 @@ class SettingFragment: BaseFragment<FragmentSettingBinding>() , GameInteractionL
     override val layoutId: Int = R.layout.fragment_setting
     override val viewModel: SettingViewModel by viewModels()
 
-    override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean) -> FragmentSettingBinding =DataBindingUtil::inflate
+    override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean)
+    -> FragmentSettingBinding =DataBindingUtil::inflate
 
     override fun setUp() {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@SettingFragment.viewModel
 
-            recyclerGame.adapter =  GameAdapter(emptyList() , this@SettingFragment)
         }
     }
 

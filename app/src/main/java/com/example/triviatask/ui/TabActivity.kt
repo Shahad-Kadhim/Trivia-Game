@@ -23,7 +23,5 @@ class TabActivity : AppCompatActivity() {
             binding.lifecycleOwner=this
         }
 
-
-
     }
 }
