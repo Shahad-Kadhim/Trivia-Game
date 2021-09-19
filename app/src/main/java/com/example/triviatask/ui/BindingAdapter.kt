@@ -1,9 +1,11 @@
 package com.example.triviatask.ui
 
 
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-
+import androidx.recyclerview.widget.RecyclerView
+import com.example.triviatask.ui.adapter.BaseAdapter
 
 
 @BindingAdapter(value = ["app:ifWinner"])
@@ -22,4 +24,18 @@ fun checkCongrats(view: TextView, valueScore: Int){
         else -> {  view.text = "Congrats!"  }
     }
 }
+
+
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items:List<T>?) =
+    (view.adapter as BaseAdapter<T>?).let {
+        if(items != null)
+            it?.setItem(items)
+        else
+            it?.setItem(emptyList())
+    }
+
+
+
+
 

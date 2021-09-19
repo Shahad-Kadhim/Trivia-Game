@@ -6,9 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
+import com.example.triviatask.model.data.domain.GameData
+import com.example.triviatask.ui.adapter.GameAdapter
+import com.example.triviatask.ui.adapter.GameInteractionListener
 import com.example.triviatask.ui.base.BaseFragment
 
-class GameFragment: BaseFragment<FragmentGameBinding>() {
+class GameFragment: BaseFragment<FragmentGameBinding>() , GameInteractionListener {
 
     override val LOG_TAG: String ="HOME_FRAGMENT"
     override val layoutId: Int = R.layout.fragment_game
@@ -23,8 +26,12 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@GameFragment.viewModel
+
+            recyclerGame.adapter =  GameAdapter(emptyList() , this@GameFragment)
+
         }
     }
 
-    override fun addCallbacks() {   }
+    override fun onClickGame(gameData: GameData) {   }
+
 }

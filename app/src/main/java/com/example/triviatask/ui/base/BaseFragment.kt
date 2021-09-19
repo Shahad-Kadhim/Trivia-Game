@@ -23,8 +23,8 @@ abstract class BaseFragment<VB:ViewBinding>(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setUp()
-        addCallbacks()
     }
 
     override fun onCreateView(
@@ -35,7 +35,5 @@ abstract class BaseFragment<VB:ViewBinding>(): Fragment() {
         bindingInflater(inflater,layoutId,container,false).apply { _binding=this }.root
 
     abstract fun setUp()
-
-    abstract fun addCallbacks()
 
 }

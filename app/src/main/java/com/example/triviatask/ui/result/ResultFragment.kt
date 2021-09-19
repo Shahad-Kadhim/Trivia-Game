@@ -33,8 +33,6 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
         }
     }
 
-    override fun addCallbacks() {  }
-
     private fun observeEvent() {
         viewModel.liveDataEvent.observe(this , {
             binding?.backBtn?.goToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
