@@ -31,6 +31,7 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
 
             setScores()
             observeEvent()
+
         }
     }
 
