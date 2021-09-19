@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/activity_tab.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_home.xml" value="0.15555555555555556" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_result.xml" value="0.19166666666666668" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_setting.xml" value="0.19166666666666668" />
+        <entry key="..\:/projects/Trivia-Game/app/src/main/res/layout/activity_tab.xml" value="0.20199275362318841" />
+        <entry key="..\:/projects/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.192481884057971" />
+        <entry key="..\:/projects/Trivia-Game/app/src/main/res/layout/fragment_home.xml" value="0.192481884057971" />
+        <entry key="..\:/projects/Trivia-Game/app/src/main/res/layout/fragment_result.xml" value="0.192481884057971" />
+        <entry key="..\:/projects/Trivia-Game/app/src/main/res/layout/fragment_setting.xml" value="0.192481884057971" />
       </map>
     </option>
   </component>
