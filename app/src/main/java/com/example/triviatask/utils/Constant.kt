@@ -1,6 +1,5 @@
 package com.example.triviatask.utils
 
-import retrofit2.Retrofit
 
 object Constant {
 
