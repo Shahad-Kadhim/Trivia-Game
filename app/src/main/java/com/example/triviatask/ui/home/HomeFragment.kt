@@ -24,17 +24,15 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
         }
-        viewModel.observe(Repository.getQuestion(),{
-            if(it is State.Success)
-                Log.i("TAG", it.data.toString())
-            else if(it is State.Loading)
-                Log.i("TAG","Loaing")
-            else
-                Log.i("TAG","error")
+        viewModel.observe(Repository.getCategories(),{
+            when (it) {
+                is State.Success -> Log.i("TAG", it.toData().toString())
+                is State.Loading -> Log.i("TAG","Loading")
+                else -> Log.i("TAG","error")
+            }
 
         },{
             Log.i("TAG", it.message.toString())
-
         })
 
     }

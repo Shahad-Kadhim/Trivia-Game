@@ -2,6 +2,7 @@ package com.example.triviatask.model
 
 import com.example.triviatask.model.network.API
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 
 object Repository {
@@ -13,26 +14,26 @@ object Repository {
         level:String="easy",
         type:String="multiple"
     ) =
-        wrap { api.getStartTrivia(amount,category,level,type) }
+        wrap ( api.getQuestions(amount,category,level,type) )
 
-    fun getCatergories() =
-        wrap { api.getApiCategory() }
+    fun getCategories() =
+        wrap(api.getApiCategory())
 
     fun getCountGlobal() =
-        wrap { api.getApiCountGlobal() }
+        wrap (api.getApiCountGlobal())
 
 
-    private fun <T>wrap(function: () -> Response<T>)=
-
-        Observable.create<State<T>> {emitter->
-            emitter.onNext(State.Loading)
-            function().apply {
-                if(isSuccessful)
-                    emitter.onNext(State.Success(body()!!))
-                else
-                    emitter.onNext(State.Error(message()))
+    private fun <T>wrap(response: Single<Response<T>>):Observable<State<T>> {
+       return response.toObservable().flatMap {
+            Observable.create <State<T>>{emitter ->
+                emitter.onNext(State.Loading)
+                if(it.isSuccessful) {
+                    emitter.onNext(State.Success(it.body()!!))
+                }
+                else{
+                    emitter.onNext(State.Error(it.message()))
+                }
             }
-            emitter.onComplete()
         }
-
+    }
 }
