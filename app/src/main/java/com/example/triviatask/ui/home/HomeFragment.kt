@@ -24,6 +24,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
+
+            button.setOnClickListener { view ->
+                Navigation.findNavController(view).navigate(R.id.resultFragment , Bundle().apply {
+                    putInt(Constant.SCORE_GAME , 7)
+                })
+            }
         }
     }
 

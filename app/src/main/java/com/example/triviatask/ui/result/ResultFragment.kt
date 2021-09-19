@@ -21,29 +21,25 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
     override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean)
     -> FragmentResultBinding =DataBindingUtil::inflate
 
+
     override fun setUp() {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@ResultFragment.viewModel
 
-            getScores()
-
+            setScores()
         }
     }
 
     override fun addCallbacks() {
 
         binding?.apply {
-            playAgainBtn.onClickGoToFragment(R.id.gameFragment)
-            backBtn.onClickGoToFragment(R.id.homeFragment)
+            backBtn.onClickGoToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
         }
+
     }
 
-    private fun getScores() {
-        val arg = Bundle(arguments)
-        val score = arg.getInt(SCORE_GAME)
-        viewModel.setScore(score)
-    }
+    private fun setScores() = viewModel.setScore(Bundle(arguments).getInt(SCORE_GAME))
 
 }
 
