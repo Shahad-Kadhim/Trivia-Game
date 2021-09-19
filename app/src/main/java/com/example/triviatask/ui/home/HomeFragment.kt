@@ -14,7 +14,7 @@ import com.example.triviatask.ui.adapter.OptionInteractionListener
 import com.example.triviatask.ui.adapter.OptionsAdapter
 import com.example.triviatask.ui.base.BaseFragment
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>() , OptionInteractionListener  {
+class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
 
     override val LOG_TAG: String ="HOME_FRAGMENT"
     override val layoutId: Int = R.layout.fragment_home
@@ -29,10 +29,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() , OptionInteractionListe
             this.viewModel=this@HomeFragment.viewModel
 
         }
-    }
-
-    override fun onClickOption(option: String) {
-
     }
 
 
