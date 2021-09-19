@@ -12,7 +12,6 @@ import com.example.triviatask.databinding.FragmentResultBinding
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.Constant.SCORE_GAME
 import com.example.triviatask.utils.goToFragment
-import com.example.triviatask.utils.onClickGoToFragment
 
 
 class ResultFragment: BaseFragment<FragmentResultBinding>() {
@@ -31,16 +30,20 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
             this.viewModel=this@ResultFragment.viewModel
 
             setScores()
+            observeEvent()
         }
     }
 
-    override fun addCallbacks() {
+    override fun addCallbacks() {  }
+
+    private fun observeEvent() {
         viewModel.liveDataEvent.observe(this , {
-            binding!!.backBtn.goToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
+            binding?.backBtn?.goToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
         })
     }
 
     private fun setScores() = viewModel.setScore(Bundle(arguments).getInt(SCORE_GAME))
+
 
 }
 

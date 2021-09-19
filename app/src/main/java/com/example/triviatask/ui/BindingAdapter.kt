@@ -22,3 +22,4 @@ fun checkCongrats(view: TextView, valueScore: Int){
         else -> {  view.text = "Congrats!"  }
     }
 }
+

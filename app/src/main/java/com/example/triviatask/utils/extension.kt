@@ -11,12 +11,8 @@ fun Disposable.add(compositeDisposable: CompositeDisposable){
 }
 
 
-fun View.onClickGoToFragment(navDir: NavDirections) {
-    this.setOnClickListener { view ->
-        Navigation.findNavController(view).navigate(navDir )
-    }
+fun View.goToFragment(navDir: NavDirections) {
+    Navigation.findNavController(this).navigate(navDir )
 }
 
-fun View.goToFragment(navDir: NavDirections) {
-        Navigation.findNavController(this).navigate(navDir )
-}
+

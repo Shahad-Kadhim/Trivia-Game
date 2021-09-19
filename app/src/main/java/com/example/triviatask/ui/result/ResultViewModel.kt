@@ -13,8 +13,8 @@ class ResultViewModel: BaseViewModel() {
         finalScore.postValue(score)
     }
 
-    fun onClickExist(isExist : Boolean){
-        liveDataEvent.postValue(isExist)
+    fun onClickExist(){
+        liveDataEvent.postValue(true)
     }
 
 }

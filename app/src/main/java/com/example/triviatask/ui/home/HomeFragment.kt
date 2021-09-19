@@ -1,16 +1,13 @@
 package com.example.triviatask.ui.home
 
-import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.ui.base.BaseFragment
-import com.example.triviatask.utils.Constant
-import com.example.triviatask.utils.onClickGoToFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
@@ -25,8 +22,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
-
         }
+
     }
 
     override fun addCallbacks() {  }
