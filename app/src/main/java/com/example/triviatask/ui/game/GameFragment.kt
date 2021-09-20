@@ -25,7 +25,7 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
 
-            recyclerOfQuestion.adapter = OptionsAdapter(mutableListOf(), viewModel)
+            this.recyclerOfQuestion.adapter = OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
         }
 
         viewModel.getQuestion(10, 23, "easy", "multiple")

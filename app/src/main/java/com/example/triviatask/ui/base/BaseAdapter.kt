@@ -1,11 +1,13 @@
 package com.example.triviatask.ui.base
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.triviatask.BR
+import com.example.triviatask.utils.Constant.LEMON_TAG
 
 
 abstract class BaseAdapter<T>(
@@ -18,6 +20,7 @@ abstract class BaseAdapter<T>(
 
     fun setItem(newItems: List<T>) {
         items = newItems
+        Log.i(LEMON_TAG,newItems.size.toString())
         notifyDataSetChanged()
     }
 

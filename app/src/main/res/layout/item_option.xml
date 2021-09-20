@@ -24,6 +24,7 @@
             android:padding="12dp"
             tools:text=" Option one"
             android:textSize="20sp"
+            android:text="@{item}"
             android:textColor="@color/primary_text_color"
             android:textStyle="bold"
             android:background="#FAF9F8" />
