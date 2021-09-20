@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ApiCategoryResponse(
     @SerializedName("trivia_categories")
-    val triviaCategories: List<TriviaCategory>
+    val triviaCategories: List<TriviaCategory>?
 )

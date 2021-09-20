@@ -6,5 +6,7 @@ object Constant {
 
     const val BASE_URL = "https://opentdb.com/"
 
+    const val LEMON_TAG = "lemon_tag"
+
 
 }
