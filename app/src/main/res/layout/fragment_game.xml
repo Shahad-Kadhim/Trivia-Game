@@ -76,8 +76,10 @@
                     tools:text="How Long do You Like to  go away ?" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerOfQuestion"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    app:items="@{viewModel.options}"
                     android:layout_marginVertical="16dp"
                     app:layout_constraintBottom_toTopOf="@+id/next"
                     app:layout_constraintEnd_toEndOf="@+id/textView2"

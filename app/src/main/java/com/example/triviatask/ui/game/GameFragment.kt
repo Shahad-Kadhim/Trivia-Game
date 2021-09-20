@@ -24,11 +24,15 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
         binding?.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
+
+            recyclerOfQuestion.adapter = OptionsAdapter(mutableListOf(), viewModel)
         }
 
         viewModel.getQuestion(10, 23, "easy", "multiple")
 
         setScoreToResultNavigation()
+
+
     }
 
     fun setScoreToResultNavigation() {

@@ -18,6 +18,8 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
 
     private val positionOfQuestion = MutableLiveData(0)
 
+    val options = MutableLiveData<List<TriviaStartResult>?>()
+
     val scoreOfQuestionEvent = MutableLiveData<Int>()
 
     val question = Transformations.map(questionIndex) {
@@ -69,9 +71,15 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
         Log.i(LEMON_TAG, "Fail: ${throwable.message}")
     }
 
-    override fun onClickOption(option: String) {
-        
+    fun getOptionsListener(option:String){
+
     }
+
+    override fun onClickOption(option: String) {
+        getOptionsListener(option)
+    }
+
+
 
 
 }
