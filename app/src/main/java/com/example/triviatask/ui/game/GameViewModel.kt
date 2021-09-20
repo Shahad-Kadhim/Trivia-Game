@@ -13,9 +13,16 @@ import com.example.triviatask.utils.Constant.LEMON_TAG
 class GameViewModel : BaseViewModel(),OptionInteractionListener {
 
     private val questionsList = MutableLiveData<List<TriviaStartResult>?>()
+
     private val questionIndex = MutableLiveData<Int>()
+
     private val positionOfQuestion = MutableLiveData(0)
+
+    var chooseOptions = ""
+    var scores = 0
+
     val scoreOfQuestionEvent = MutableLiveData<Int>()
+
     val question = Transformations.map(questionIndex) {
         questionsList.value?.get(it)
     }
@@ -29,14 +36,18 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
         } else {
             scoreOfQuestionEvent.postValue(9)
         }
+//
+//        if(chooseOptions.equals(question.value?.correctAnswer)){
+//
+//        }
 
     }
 
     fun getQuestion(
         amount: Int,
-        category: Int?,
-        level: String?,
-        type: String?
+        category: Int,
+        level: String,
+        type: String
     ) {
         observe(
             Repository.getQuestion(amount, category, level, type),
@@ -66,8 +77,12 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
     }
 
     override fun onClickOption(option: String) {
-        
+
+        chooseOptions = option
+
     }
+
+
 
 
 }

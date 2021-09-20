@@ -23,9 +23,13 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
         binding?.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
+
+            this.recyclerOfQuestion.adapter = OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
         }
 
         setScoreToResultNavigation()
+
+
     }
 
     fun setScoreToResultNavigation() {
