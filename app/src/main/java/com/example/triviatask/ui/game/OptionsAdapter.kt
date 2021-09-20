@@ -10,7 +10,7 @@ class OptionsAdapter (
     var listener: OptionInteractionListener,
 ) : BaseAdapter<String>(items,listener) {
 
-    override val layoutId: Int = R.layout.item_options
+    override val layoutId: Int = R.layout.item_option
 
 }
 

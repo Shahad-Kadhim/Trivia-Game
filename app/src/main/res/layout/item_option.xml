@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="item"
+            type="String" />
 
+        <variable
+            name="listener"
+            type="com.example.triviatask.ui.game.OptionInteractionListener" />
     </data>
 
     <androidx.cardview.widget.CardView
