@@ -1,4 +1,4 @@
-package com.example.triviatask.ui
+package com.example.triviatask.utils
 
 
 import android.widget.TextView
