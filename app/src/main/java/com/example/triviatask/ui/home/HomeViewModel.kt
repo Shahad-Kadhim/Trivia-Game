@@ -45,8 +45,8 @@ class HomeViewModel:BaseViewModel(){
         )
     }
 
-    private fun getCategoryId(): Int {
+    private fun getCategoryId(): Int? {
         return categoryList.value?.triviaCategories?.filter {
-            it.name == gameCategory.value }?.map { it.id }!!.first()
+            it.name == gameCategory.value }?.map { it.id }?.first()
     }
 }
