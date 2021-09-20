@@ -45,9 +45,9 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
 
     fun getQuestion(
         amount: Int,
-        category: Int,
-        level: String,
-        type: String
+        category: Int?,
+        level: String?,
+        type: String?
     ) {
         observe(
             Repository.getQuestion(amount, category, level, type),

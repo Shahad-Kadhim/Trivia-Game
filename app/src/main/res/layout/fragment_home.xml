@@ -167,8 +167,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:maxValue="50"
             app:minValue="1"
-            app:value="@={viewModel.questionNumber}"
-            tools:ignore="MissingClass" />
+            app:value="@={viewModel.questionNumber}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
