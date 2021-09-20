@@ -10,15 +10,14 @@ import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
 import com.example.triviatask.ui.base.BaseFragment
 
-class GameFragment : BaseFragment<FragmentGameBinding>() {
+class GameFragment: BaseFragment<FragmentGameBinding>() {
 
-    override val LOG_TAG: String = "HOME_FRAGMENT"
+    override val LOG_TAG: String ="HOME_FRAGMENT"
     override val layoutId: Int = R.layout.fragment_game
 
-    override val viewModel: GameViewModel by viewModels()
+    override val viewModel :GameViewModel by viewModels()
 
-    override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean) -> FragmentGameBinding =
-        DataBindingUtil::inflate
+    override val bindingInflater: (LayoutInflater,Int,ViewGroup?,Boolean) -> FragmentGameBinding =DataBindingUtil::inflate
 
 
     override fun setUp() {

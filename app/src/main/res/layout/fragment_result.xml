@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
@@ -13,16 +14,76 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#918654">
+        android:background="#6552A1" >
 
         <TextView
-            android:id="@+id/score"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/alegreya_sans_sc_extrabold"
+            android:gravity="center"
+            android:text="You Win"
+            app:ifWinner="@{viewModel.finalScore}"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/win_badge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:gravity="center"
+            tools:text="Congrats !"
+            app:ifCongrats="@{viewModel.finalScore}"
+            android:textColor="@color/white"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.finalScore.toString()+`/10`}"
+            tools:text="8/10"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/arbutus_slab"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Exist"
+            android:layout_marginHorizontal="35dp"
+            android:paddingVertical="10dp"
+            android:onClick="@{() -> viewModel.onClickExist()}"
+            android:backgroundTint="#6caea6"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,4 +9,5 @@ object Constant {
     const val LEMON_TAG = "lemon_tag"
 
 
+    const val SCORE_GAME = "ScoreGame"
 }
