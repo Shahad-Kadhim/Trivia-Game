@@ -1,4 +1,4 @@
-package com.example.triviatask.ui.adapter
+package com.example.triviatask.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.triviatask.BR
 
 
-abstract class BaseAdapter<T>(var items: List<T>,
-                              private var listener: BaseInteractionListener)
-    : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
+abstract class BaseAdapter<T>(
+    var items: List<T>,
+    private var listener: BaseInteractionListener
+    ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
 
     abstract val layoutId: Int
@@ -31,7 +32,7 @@ abstract class BaseAdapter<T>(var items: List<T>,
         holder: BaseViewHolder, position: Int) {
         val currentItem = items.get(position)
         when(holder) {
-            is ItemViewHolder  -> {
+            is ItemViewHolder -> {
                 holder.binding.setVariable(BR.item, currentItem)
                 holder.binding.setVariable(BR.listener, listener)
             }
@@ -45,9 +46,6 @@ abstract class BaseAdapter<T>(var items: List<T>,
         : BaseViewHolder(binding)
 
 }
-
-
-interface BaseInteractionListener
 
 
 

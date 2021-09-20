@@ -7,11 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
-import com.example.triviatask.model.data.domain.GameData
-import com.example.triviatask.ui.adapter.GameAdapter
-import com.example.triviatask.ui.adapter.GameInteractionListener
-import com.example.triviatask.ui.adapter.OptionInteractionListener
-import com.example.triviatask.ui.adapter.OptionsAdapter
 import com.example.triviatask.ui.base.BaseFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>()   {

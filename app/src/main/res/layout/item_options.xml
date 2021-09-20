@@ -9,7 +9,7 @@
 
         <variable
             name="listener"
-            type="com.example.triviatask.ui.adapter.OptionInteractionListener" />
+            type="com.example.triviatask.ui.game.OptionInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

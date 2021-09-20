@@ -7,8 +7,7 @@ import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
 import com.example.triviatask.model.data.domain.GameData
-import com.example.triviatask.ui.adapter.GameAdapter
-import com.example.triviatask.ui.adapter.GameInteractionListener
+import com.example.triviatask.ui.setting.GameInteractionListener
 import com.example.triviatask.ui.base.BaseFragment
 
 class GameFragment: BaseFragment<FragmentGameBinding>() , GameInteractionListener {

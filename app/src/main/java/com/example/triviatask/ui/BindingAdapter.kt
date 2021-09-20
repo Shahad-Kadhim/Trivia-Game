@@ -1,11 +1,10 @@
 package com.example.triviatask.ui
 
 
-import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.triviatask.ui.adapter.BaseAdapter
+import com.example.triviatask.ui.base.BaseAdapter
 
 
 @BindingAdapter(value = ["app:ifWinner"])

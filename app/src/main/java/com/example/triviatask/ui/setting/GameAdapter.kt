@@ -1,8 +1,8 @@
-package com.example.triviatask.ui.adapter
+package com.example.triviatask.ui.setting
 
 import com.example.triviatask.R
-import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.model.data.domain.GameData
+import com.example.triviatask.ui.base.BaseAdapter
 
 class GameAdapter(
     items: List<GameData>,
@@ -11,9 +11,4 @@ class GameAdapter(
 
     override val layoutId: Int = R.layout.item_game
 
-}
-
-
-interface GameInteractionListener: BaseInteractionListener{
-    fun onClickGame(gameData: GameData)
 }
