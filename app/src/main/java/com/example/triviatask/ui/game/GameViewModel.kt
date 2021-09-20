@@ -10,7 +10,7 @@ import com.example.triviatask.model.data.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant.LEMON_TAG
 
-class GameViewModel : BaseViewModel() {
+class GameViewModel : BaseViewModel(),OptionInteractionListener {
 
     private val questionsList = MutableLiveData<List<TriviaStartResult>?>()
 
@@ -67,6 +67,10 @@ class GameViewModel : BaseViewModel() {
 
     private fun onSetQuestionError(throwable: Throwable) {
         Log.i(LEMON_TAG, "Fail: ${throwable.message}")
+    }
+
+    override fun onClickOption(option: String) {
+        
     }
 
 
