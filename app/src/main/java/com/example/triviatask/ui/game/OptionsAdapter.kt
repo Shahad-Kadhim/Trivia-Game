@@ -1,4 +1,4 @@
-package com.example.triviatask.ui.adapter
+package com.example.triviatask.ui.game
 
 import com.example.triviatask.R
 import com.example.triviatask.ui.base.BaseAdapter

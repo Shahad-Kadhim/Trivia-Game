@@ -3,25 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/drawable/round_top_left.xml" value="0.19814814814814816" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/drawable/rounded.xml" value="0.22291666666666668" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout-v23/fragment_result.xml" value="0.20677083333333332" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/activity_tab.xml" value="0.1" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.14" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_home.xml" value="0.20677083333333332" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_result.xml" value="0.2" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_setting.xml" value="0.1837962962962963" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/item_game.xml" value="0.18127853881278538" />
-        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/item_option.xml" value="0.1837962962962963" />
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/activity_tab.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/fragment_result.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/fragment_setting.xml" value="0.36666666666666664" />
+        <entry key="..\:/Trivia-Game-lemon/app/src/main/res/layout/fragment_game.xml" value="0.203125" />
+        <entry key="..\:/Trivia-Game-lemon/app/src/main/res/layout/fragment_home.xml" value="0.203125" />
+        <entry key="..\:/Trivia-Game-lemon/app/src/main/res/layout/fragment_result.xml" value="0.25" />
+        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/activity_tab.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_home.xml" value="0.15555555555555556" />
+        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_result.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/MJ/Downloads/Trivia-Game/app/src/main/res/layout/fragment_setting.xml" value="0.19166666666666668" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

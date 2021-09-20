@@ -30,7 +30,7 @@ abstract class BaseAdapter<T>(
 
     override fun onBindViewHolder(
         holder: BaseViewHolder, position: Int) {
-        val currentItem = items.get(position)
+        val currentItem = items[position]
         when(holder) {
             is ItemViewHolder -> {
                 holder.binding.setVariable(BR.item, currentItem)
