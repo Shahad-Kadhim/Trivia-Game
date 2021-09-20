@@ -14,7 +14,6 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
 
     override val LOG_TAG: String ="HOME_FRAGMENT"
     override val layoutId: Int = R.layout.fragment_game
-
     override val viewModel :GameViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater,Int,ViewGroup?,Boolean) -> FragmentGameBinding =DataBindingUtil::inflate
@@ -26,14 +25,11 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
             this.viewModel = this@GameFragment.viewModel
         }
 
-        viewModel.getQuestion(10, 23, "easy", "multiple")
-
         setScoreToResultNavigation()
     }
 
     fun setScoreToResultNavigation() {
         viewModel.scoreOfQuestionEvent.observe(this) {
-
             Navigation
                 .findNavController(binding?.next as View)
                 .navigate(

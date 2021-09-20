@@ -9,10 +9,10 @@ object Repository {
     private val api= API.apiService
 
     fun getQuestion(
-        amount:Int =10,
-        category:Int?=null,
-        level:String="easy",
-        type:String="multiple"
+        amount:Int,
+        category:Int?,
+        level:String?,
+        type:String?
     ) =
         wrap ( api.getQuestions(amount,category,level,type) )
 

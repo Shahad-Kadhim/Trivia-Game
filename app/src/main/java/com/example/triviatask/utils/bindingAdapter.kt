@@ -1,12 +1,15 @@
 package com.example.triviatask.utils
 
+
+import android.R
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.RadioGroup
-import android.widget.Spinner
+import android.widget.*
+import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
+import androidx.recyclerview.widget.RecyclerView
 import com.example.triviatask.model.data.apiCategory.TriviaCategory
-import androidx.databinding.*
+import com.example.triviatask.ui.base.BaseAdapter
 import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
 import com.mcdev.quantitizerlibrary.QuantitizerListener
 
@@ -15,13 +18,12 @@ import com.mcdev.quantitizerlibrary.QuantitizerListener
 fun  setEntries(view: Spinner, entries: List<TriviaCategory>?) {
     if (entries != null) {
         ArrayAdapter(view.context,
-            android.R.layout.simple_spinner_dropdown_item, (entries.map { it.name }))
+            R.layout.simple_spinner_dropdown_item, (entries.map { it.name }))
             .also {
                 it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 view.adapter = it }
     }
 }
-
 
 
 @BindingAdapter(value = ["app:selectedValue"])
@@ -48,9 +50,9 @@ fun setSelectedListener(view: Spinner, changeListener: InverseBindingListener) {
 
 
 
-
 @BindingAdapter(value = ["selectRadioButtonIndex"])
 fun setSelectedChildIndex(view: RadioGroup, index: Int) {
+
     if (view.checkedRadioButtonId != index){
         view.setSelectedIndex(index)
     }
@@ -70,7 +72,6 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
 
 
 
-
 @BindingAdapter(value = ["minValue"])
 fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
     value?.let { view.minValue = it }
@@ -80,8 +81,6 @@ fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
 fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
     value?.let { view.maxValue = it }
 }
-
-
 
 
 @BindingAdapter(value = ["value"])
@@ -107,4 +106,35 @@ fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListe
         }
     })
 }
+
+@BindingAdapter(value = ["app:ifWinner"])
+fun checkWinner(view: TextView, valueScore: Int){
+    when{
+        valueScore < 5 -> { view.text = "You Lost" }
+         else -> {  view.text = "You Win"  }
+    }
+}
+
+
+@BindingAdapter(value = ["app:ifCongrats"])
+fun checkCongrats(view: TextView, valueScore: Int){
+    when{
+        valueScore < 5 -> { view.text = "Hard Luck!" }
+        else -> {  view.text = "Congrats!"  }
+    }
+}
+
+
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items:List<T>?) =
+    (view.adapter as BaseAdapter<T>?)?.let {
+        if(items != null)
+            it.setItem(items)
+        else
+            it.setItem(emptyList())
+    }
+
+
+
+
 

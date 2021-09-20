@@ -3,8 +3,8 @@ package com.example.triviatask.utils
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.Spinner
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.NavDirections
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -22,7 +22,6 @@ fun <T> Spinner.getSelectedIndex(item:T?): Int {
 }
 
 
-
 fun RadioGroup.getSelectedIndex(): Int {
     for (index in 0 until childCount){
         if(getChildAt(index).id == checkedRadioButtonId){
@@ -37,7 +36,7 @@ fun RadioGroup.setSelectedIndex(index: Int) =
 
 
 fun View.goToFragment(navDir: NavDirections) {
-    Navigation.findNavController(this).navigate(navDir )
+    Navigation.findNavController(this).navigate(navDir)
 }
 
 

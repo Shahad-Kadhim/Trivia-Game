@@ -1,6 +1,5 @@
 package com.example.triviatask.ui.home
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.ui.base.BaseFragment
+import com.example.triviatask.utils.goToFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
 
@@ -22,9 +22,15 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
         binding?.apply {
             this.lifecycleOwner=viewLifecycleOwner
             this.viewModel=this@HomeFragment.viewModel
-
         }
+
+        setHomeToGameNavigation()
     }
 
+    private fun setHomeToGameNavigation() {
+        viewModel.gameConfigurationEvent.observe(this) {
+           binding?.startGameBtn?.goToFragment(HomeFragmentDirections.actionHomeFragmentToGameFragment(it))
+        }
+    }
 
 }
