@@ -25,7 +25,7 @@ object Repository {
 
     private fun <T>wrap(response: Single<Response<T>>):Observable<State<T>> {
        return response.toObservable().flatMap {
-            Observable.create <State<T>>{emitter ->
+            Observable.create <State<T>>{ emitter ->
                 emitter.onNext(State.Loading)
                 if(it.isSuccessful) {
                     emitter.onNext(State.Success(it.body()!!))

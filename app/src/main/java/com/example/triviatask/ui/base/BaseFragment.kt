@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VB:ViewBinding>(): Fragment() {
+
     abstract val layoutId: Int
+
     abstract val LOG_TAG:String
     lateinit var _binding :ViewBinding
     var binding:VB?
@@ -21,6 +23,7 @@ abstract class BaseFragment<VB:ViewBinding>(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setUp()
     }
 

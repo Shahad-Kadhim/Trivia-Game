@@ -1,9 +1,11 @@
 package com.example.triviatask.ui.game
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
 import com.example.triviatask.ui.base.BaseFragment
@@ -20,8 +22,24 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
 
     override fun setUp() {
         binding?.apply {
-            this.lifecycleOwner=viewLifecycleOwner
-            this.viewModel=this@GameFragment.viewModel
+            this.lifecycleOwner = viewLifecycleOwner
+            this.viewModel = this@GameFragment.viewModel
+        }
+
+        viewModel.getQuestion(10, 23, "easy", "multiple")
+
+        setScoreToResultNavigation()
+    }
+
+    fun setScoreToResultNavigation() {
+        viewModel.scoreOfQuestionEvent.observe(this) {
+
+            Navigation
+                .findNavController(binding?.next as View)
+                .navigate(
+                    GameFragmentDirections
+                        .actionGameFragmentToResultFragment(it,10)
+                )
         }
     }
 }

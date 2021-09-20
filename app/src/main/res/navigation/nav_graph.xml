@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/gameFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -39,7 +39,10 @@
             android:id="@+id/action_resultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
-            android:name="score"
+            android:name="scoreGame"
+            app:argType="integer" />
+        <argument
+            android:name="totulNumOfQuestion"
             app:argType="integer" />
     </fragment>
     <fragment
