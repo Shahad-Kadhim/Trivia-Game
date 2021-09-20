@@ -9,7 +9,5 @@ object Constant {
     val gameType = listOf("boolean","multiple")
 
     const val LEMON_TAG = "lemon_tag"
-
-
     const val SCORE_GAME = "ScoreGame"
 }
