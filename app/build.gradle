@@ -84,6 +84,5 @@ dependencies {
 
     implementation "com.github.kojofosu:Quantitizer:v1.6.3"
 
-    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
 }
