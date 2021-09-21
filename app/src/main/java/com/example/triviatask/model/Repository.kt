@@ -4,6 +4,8 @@ import com.example.triviatask.model.network.API
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
+import com.example.triviatask.utils.convertToLocalTriviaStart
+import com.example.triviatask.utils.convertToLocalTriviaStartResponse
 
 object Repository {
     private val api= API.apiService
@@ -14,7 +16,13 @@ object Repository {
         level:String?,
         type:String?
     ) =
-        wrap ( api.getQuestions(amount,category,level,type) )
+        wrap ( api.getQuestions(amount,category,level,type)).map {
+            when(it){
+                is State.Error -> State.Error(it.message)
+                State.Loading -> State.Loading
+                is State.Success -> State.Success(it.toData()?.convertToLocalTriviaStartResponse())
+            }
+        }
 
     fun getCategories() =
         wrap(api.getApiCategory())
@@ -25,7 +33,7 @@ object Repository {
 
     private fun <T>wrap(response: Single<Response<T>>):Observable<State<T>> {
        return response.toObservable().flatMap {
-            Observable.create <State<T>>{ emitter ->
+            Observable.create { emitter ->
                 emitter.onNext(State.Loading)
                 if(it.isSuccessful) {
                     emitter.onNext(State.Success(it.body()!!))

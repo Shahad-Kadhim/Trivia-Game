@@ -5,5 +5,6 @@ import com.example.triviatask.ui.game.Answer
 data class LocalTriviaStart(
     val question: String?,
     var answers: List<Answer>?,
-    val type: String?
+    val type: String?,
+    val correctAnswer: String?
 )

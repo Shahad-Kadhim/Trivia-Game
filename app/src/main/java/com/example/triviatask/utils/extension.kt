@@ -6,6 +6,8 @@ import android.widget.Spinner
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.example.triviatask.model.data.domain.LocalTriviaStart
+import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
+import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.game.Answer
 import com.example.triviatask.ui.game.CheckOptions
@@ -49,7 +51,13 @@ fun TriviaStartResult.convertToLocalTriviaStart(): LocalTriviaStart {
     }?.shuffled()?.map {
         Answer(it, CheckOptions.UNSELECTED)
     }
-    return LocalTriviaStart(this.question, allOptions,this.type)
+    return LocalTriviaStart(this.question, allOptions, this.type, this.correctAnswer)
+}
+
+fun TriviaStartResponse.convertToLocalTriviaStartResponse(): LocalTriviaStartResponse? {
+    return this.results?.let { list ->
+        LocalTriviaStartResponse(list.map { it.convertToLocalTriviaStart() })
+    }
 }
 
 

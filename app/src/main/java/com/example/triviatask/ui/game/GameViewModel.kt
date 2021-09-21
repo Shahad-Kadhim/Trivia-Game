@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.triviatask.model.Repository
 import com.example.triviatask.model.State
+import com.example.triviatask.model.data.domain.LocalTriviaStart
+import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.base.BaseViewModel
@@ -13,7 +15,7 @@ import com.example.triviatask.utils.convertToLocalTriviaStart
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
-    private val questionsList = MutableLiveData<List<TriviaStartResult>?>()
+    private val questionsList = MutableLiveData<List<LocalTriviaStart>?>()
 
     val questionIndex = MutableLiveData<Int>()
 
@@ -47,7 +49,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         amount: Int,
         category: Int?,
         level: String?,
-        type: String?
+        type: String?,
     ) {
         observe(
             Repository.getQuestion(amount, category, level, type),
@@ -57,20 +59,17 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     }
 
-    private fun onSetQuestionSuccess(triviaQuestionResponse: State<TriviaStartResponse>) {
+    private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse>) {
 
         questionsList.value =
-            triviaQuestionResponse.toData()?.results
-
-        Log.i(LEMON_TAG, questionsList.toString())
+            localTriviaQuestionResponse.toData()?.questions
 
         positionOfQuestion.value?.let { setQuestion(it) }
-
     }
 
     private fun setQuestion(indexOfQuestion: Int) {
         options.postValue(
-            questionsList.value?.get(indexOfQuestion)?.convertToLocalTriviaStart()?.answers
+            questionsList.value?.get(indexOfQuestion)?.answers
         )
         questionIndex.postValue(indexOfQuestion)
     }
