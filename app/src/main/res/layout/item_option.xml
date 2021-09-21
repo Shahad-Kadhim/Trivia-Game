@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -24,6 +25,7 @@
             android:padding="12dp"
             tools:text=" Option one"
             android:textSize="20sp"
+            app:optionsBackgroundColor="@{item.state}"
             android:text="@{item.answer}"
             android:onClick="@{() -> listener.onClickOption(item)}"
             android:textColor="@color/primary_text_color"

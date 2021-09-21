@@ -1,6 +1,7 @@
 package com.example.triviatask.utils
 
 import android.R
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -10,13 +11,15 @@ import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
+import com.example.triviatask.ui.game.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
 
 
 @BindingAdapter(value = ["app:entries"])
 fun setEntries(view: Spinner, entries: List<TriviaCategory>?) {
     if (entries != null) {
-        ArrayAdapter(view.context,
+        ArrayAdapter(
+            view.context,
             R.layout.simple_spinner_dropdown_item, (entries.map { it.name })
         )
             .also {
@@ -70,6 +73,7 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
         attChange.onChange()
     }
 }
+
 //
 //@BindingAdapter(value = ["minValue"])
 //fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
@@ -105,6 +109,16 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
 //        }
 //    })
 //}
+@BindingAdapter(value = ["app:optionsBackgroundColor"])
+fun setBackgroundColor(view: View, state: CheckOptions) {
+
+    when (state) {
+        CheckOptions.UNSELECTED -> view.setBackgroundColor(Color.GRAY)
+        CheckOptions.SELECTED_CORRECT -> view.setBackgroundColor(Color.GREEN)
+        CheckOptions.SELECTED_INCORRECT -> view.setBackgroundColor(Color.RED)
+
+    }
+}
 
 @BindingAdapter(value = ["app:ifWinner"])
 fun checkWinner(view: TextView, valueScore: Int) {

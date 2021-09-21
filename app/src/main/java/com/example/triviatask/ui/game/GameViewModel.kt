@@ -86,17 +86,16 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
     override fun onClickOption(option: Answer) {
         options.value = options.value?.apply {
 
-            if (option.answer == question.value?.correctAnswer){
+            if (option.answer == question.value?.correctAnswer) {
                 option.state = CheckOptions.SELECTED_CORRECT
+            } else {
+                option.state = CheckOptions.SELECTED_INCORRECT
+                this.filter { it.answer == question.value?.correctAnswer }
+                    .forEach {
+                        it.state = CheckOptions.SELECTED_CORRECT
+                    }
             }
 
-//            forEach {
-//                if (it.answer == question.value?.correctAnswer) {
-//                    it.state = CheckOptions.SELECTED_CORRECT
-//                } else {
-//                    it.state = CheckOptions.SELECTED_INCORRECT
-//                }
-//            }
 
         }
     }
