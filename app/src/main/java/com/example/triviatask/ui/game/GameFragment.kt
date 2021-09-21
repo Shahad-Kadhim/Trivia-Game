@@ -28,10 +28,7 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
         binding?.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
-//            this.progressOfTotalQuestion.text =
-//                "Question" +
-//                        " ${viewModel?.positionOfQuestion?.value}/" +
-//                        "${args.gameConfiguration.questionNumber}"
+
             this.recyclerOfQuestion.adapter =
                 OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
 

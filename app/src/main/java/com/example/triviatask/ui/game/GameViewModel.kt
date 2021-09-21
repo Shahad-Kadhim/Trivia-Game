@@ -9,7 +9,7 @@ import com.example.triviatask.model.data.response.triviaStart.TriviaStartRespons
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant.LEMON_TAG
-import com.example.triviatask.utils.convertToLocalQuestionInfo
+import com.example.triviatask.utils.convertToLocalTriviaStart
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
@@ -29,9 +29,6 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
     }
 
     val options = MutableLiveData<List<Answer>?>()
-//        Transformations.map(question) {
-//        it?.convertToLocalQuestionInfo()?.answers
-//    }
 
     private fun goToNextQuestion() {
 
@@ -77,7 +74,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     private fun setQuestion(indexOfQuestion: Int) {
         options.postValue(
-            questionsList.value?.get(indexOfQuestion)?.convertToLocalQuestionInfo()?.answers
+            questionsList.value?.get(indexOfQuestion)?.convertToLocalTriviaStart()?.answers
         )
         questionIndex.postValue(indexOfQuestion)
     }
@@ -88,13 +85,18 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     override fun onClickOption(option: Answer) {
         options.value = options.value?.apply {
-            forEach {
-                if (it.answer == question.value?.correctAnswer) {
-                    it.state = CheckOptions.SELECTED_CORRECT
-                }else{
-                    it.state = CheckOptions.SELECTED_INCORRECT
-                }
+
+            if (option.answer == question.value?.correctAnswer){
+                option.state = CheckOptions.SELECTED_CORRECT
             }
+
+//            forEach {
+//                if (it.answer == question.value?.correctAnswer) {
+//                    it.state = CheckOptions.SELECTED_CORRECT
+//                } else {
+//                    it.state = CheckOptions.SELECTED_INCORRECT
+//                }
+//            }
 
         }
     }

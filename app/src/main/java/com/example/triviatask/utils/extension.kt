@@ -5,7 +5,7 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
-import com.example.triviatask.model.data.domain.LocalQuestionInfo
+import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.game.Answer
 import com.example.triviatask.ui.game.CheckOptions
@@ -43,13 +43,13 @@ fun View.goToFragment(navDir: NavDirections) {
     Navigation.findNavController(this).navigate(navDir)
 }
 
-fun TriviaStartResult.convertToLocalQuestionInfo(): LocalQuestionInfo {
+fun TriviaStartResult.convertToLocalTriviaStart(): LocalTriviaStart {
     val allOptions = this.incorrectAnswers?.toMutableList()?.apply {
         correctAnswer?.let { add(it) }
     }?.shuffled()?.map {
         Answer(it, CheckOptions.UNSELECTED)
     }
-    return LocalQuestionInfo(this.question, allOptions,this.type)
+    return LocalTriviaStart(this.question, allOptions,this.type)
 }
 
 
