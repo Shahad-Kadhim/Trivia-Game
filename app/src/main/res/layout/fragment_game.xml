@@ -25,7 +25,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="16dp"
             android:textColor="@color/white"
-            android:text="@{String.valueOf(viewModel.questionIndex + 1)}"
+            android:text="@{String.valueOf(viewModel.positionOfQuestion)}"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -7,17 +7,12 @@ import com.example.triviatask.model.Repository
 import com.example.triviatask.model.State
 import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
-import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
-import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant.LEMON_TAG
-import com.example.triviatask.utils.convertToLocalTriviaStart
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     private val questionsList = MutableLiveData<List<LocalTriviaStart>?>()
-
-    val questionIndex = MutableLiveData<Int>()
 
     val positionOfQuestion = MutableLiveData(0)
 
@@ -25,17 +20,15 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     val scoreOfQuestionEvent = MutableLiveData<Int>()
 
-    val question = Transformations.map(questionIndex) {
+    val question = Transformations.map(positionOfQuestion) {
         questionsList.value?.get(it)
     }
 
-    val options = MutableLiveData<List<Answer>?>()
+    val options = MutableLiveData<List<Answer>?>( )
 
     fun goToNextQuestion() {
 
         positionOfQuestion.value = positionOfQuestion.value?.plus(1)   // 1+2+3+4....10
-
-        questionIndex.value = positionOfQuestion.value?.minus(1)
 
         if (questionsList.value!!.size > positionOfQuestion.value!!) {
             positionOfQuestion.value?.let { setQuestion(it) }
@@ -59,7 +52,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     }
 
-    private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse>) {
+    private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse?>) {
 
         questionsList.value =
             localTriviaQuestionResponse.toData()?.questions
@@ -71,7 +64,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         options.postValue(
             questionsList.value?.get(indexOfQuestion)?.answers
         )
-        questionIndex.postValue(indexOfQuestion)
+        positionOfQuestion.postValue(indexOfQuestion)
     }
 
     private fun onSetQuestionError(throwable: Throwable) {

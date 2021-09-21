@@ -11,6 +11,11 @@ abstract class BaseViewModel:ViewModel() {
 
     private val disposable=CompositeDisposable()
 
+    override fun onCleared() {
+        super.onCleared()
+        disposable.dispose()
+    }
+
     fun <T>observe(
         observable: Observable<T>,
         onSuccess:(T)->Unit,
