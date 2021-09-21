@@ -19,7 +19,6 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     val positionOfQuestion = MutableLiveData(0)
 
-    var chooseOptions = ""
     var scores = 0
 
     val scoreOfQuestionEvent = MutableLiveData<Int>()
@@ -30,19 +29,16 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     val options = MutableLiveData<List<Answer>?>()
 
-    private fun goToNextQuestion() {
+    fun goToNextQuestion() {
 
-        positionOfQuestion.postValue(positionOfQuestion.value?.plus(1)) // 1+2+3+4....10
+        positionOfQuestion.value = positionOfQuestion.value?.plus(1)   // 1+2+3+4....10
+
+        questionIndex.value = positionOfQuestion.value?.minus(1)
 
         if (questionsList.value!!.size > positionOfQuestion.value!!) {
             positionOfQuestion.value?.let { setQuestion(it) }
         } else {
-            scoreOfQuestionEvent.postValue(9)
-        }
-
-        if (chooseOptions == question.value?.correctAnswer) {
-
-            scores++
+            scoreOfQuestionEvent.postValue(scores)
         }
 
     }
@@ -88,6 +84,8 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
             if (option.answer == question.value?.correctAnswer) {
                 option.state = CheckOptions.SELECTED_CORRECT
+                scores++
+
             } else {
                 option.state = CheckOptions.SELECTED_INCORRECT
                 this.filter { it.answer == question.value?.correctAnswer }
