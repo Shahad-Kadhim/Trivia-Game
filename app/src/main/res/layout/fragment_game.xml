@@ -17,32 +17,36 @@
         android:background="@color/background">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:id="@+id/progressOfTotalQuestion"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
-            tools:text="Question 2/5"
-            android:textStyle="bold"
-            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
             android:textColor="@color/white"
+            android:textSize="@{viewModel.questionIndex}"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator"
+            tools:text="Question 2/5" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/linearProgressIndicator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/rounded"
             android:foreground="@color/secondary_background"
             android:padding="3dp"
             android:secondaryProgressTint="@color/secondary_background"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
@@ -50,9 +54,10 @@
             android:layout_marginVertical="24dp"
             app:cardCornerRadius="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator">
+            app:layout_constraintEnd_toEndOf="@+id/linearProgressIndicator"
+            app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator"
+            app:layout_constraintTop_toBottomOf="@+id/progressOfTotalQuestion">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -60,9 +65,11 @@
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    android:gravity="center"
                     android:paddingHorizontal="5dp"
                     android:paddingEnd="12dp"
                     android:text="@{viewModel.question.question}"
@@ -79,28 +86,30 @@
                     android:id="@+id/recyclerOfQuestion"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:items="@{viewModel.question.allOptions}"
-                    android:layout_marginVertical="16dp"
                     android:orientation="vertical"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginBottom="16dp"
+                    app:items="@{viewModel.options}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@+id/next"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView2"
                     app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2"
-                    tools:listitem="@layout/item_option"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:listitem="@layout/item_option" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/next"
-                    android:layout_width="152dp"
-                    android:layout_height="74dp"
-                    android:backgroundTint="@color/secondary_background"
-                    android:text="Answer"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:onClick="@{() -> viewModel.goToNextQuestion()}"
-                    android:background="@drawable/round_top_left"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                <!--                <androidx.appcompat.widget.AppCompatButton-->
+                <!--                    android:id="@+id/next"-->
+                <!--                    android:layout_width="152dp"-->
+                <!--                    android:layout_height="74dp"-->
+                <!--                    android:background="@drawable/round_top_left"-->
+                <!--                    android:backgroundTint="@color/secondary_background"-->
+                <!--                    android:onClick="@{() -> viewModel.goToNextQuestion()}"-->
+                <!--                    android:text="Answer"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 

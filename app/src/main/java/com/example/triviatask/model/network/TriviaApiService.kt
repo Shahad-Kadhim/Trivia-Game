@@ -1,8 +1,8 @@
 package com.example.triviatask.model.network
 
-import com.example.triviatask.model.data.apiCategory.ApiCategoryResponse
-import com.example.triviatask.model.data.apiCountGlobal.ApiCountGlobalResponse
-import com.example.triviatask.model.data.triviaStart.TriviaStartResponse
+import com.example.triviatask.model.data.response.apiCategory.ApiCategoryResponse
+import com.example.triviatask.model.data.response.apiCountGlobal.ApiCountGlobalResponse
+import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.GET

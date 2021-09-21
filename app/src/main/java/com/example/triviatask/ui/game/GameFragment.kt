@@ -1,7 +1,7 @@
 package com.example.triviatask.ui.game
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -11,22 +11,29 @@ import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
 import com.example.triviatask.ui.base.BaseFragment
 
-class GameFragment: BaseFragment<FragmentGameBinding>() {
+class GameFragment : BaseFragment<FragmentGameBinding>() {
 
-    val args:GameFragmentArgs by navArgs()
-    override val LOG_TAG: String ="HOME_FRAGMENT"
+    val args: GameFragmentArgs by navArgs()
+    override val LOG_TAG: String = "HOME_FRAGMENT"
     override val layoutId: Int = R.layout.fragment_game
-    override val viewModel :GameViewModel by viewModels()
+    override val viewModel: GameViewModel by viewModels()
 
-    override val bindingInflater: (LayoutInflater,Int,ViewGroup?,Boolean) -> FragmentGameBinding =DataBindingUtil::inflate
+    override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean) -> FragmentGameBinding =
+        DataBindingUtil::inflate
 
 
+    @SuppressLint("SetTextI18n")
     override fun setUp() {
 
         binding?.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
-            this.recyclerOfQuestion.adapter = OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
+//            this.progressOfTotalQuestion.text =
+//                "Question" +
+//                        " ${viewModel?.positionOfQuestion?.value}/" +
+//                        "${args.gameConfiguration.questionNumber}"
+            this.recyclerOfQuestion.adapter =
+                OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
 
         }
         setScoreToResultNavigation()
@@ -34,10 +41,10 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
 
     }
 
-    fun startGame(){
+    private fun startGame() {
         args.gameConfiguration.apply {
             viewModel.getQuestion(
-                questionNumber,
+                5,
                 categoryGameId,
                 difficultyGame,
                 gameType
@@ -45,14 +52,19 @@ class GameFragment: BaseFragment<FragmentGameBinding>() {
         }
     }
 
-    fun setScoreToResultNavigation() {
+    private fun setScoreToResultNavigation() {
         viewModel.scoreOfQuestionEvent.observe(this) {
-            Navigation
-                .findNavController(binding?.next as View)
-                .navigate(
-                    GameFragmentDirections
-                        .actionGameFragmentToResultFragment(it,args.gameConfiguration.questionNumber)
-                )
+            view?.let { viewNavigation ->
+                Navigation
+                    .findNavController(viewNavigation)
+                    .navigate(
+                        GameFragmentDirections
+                            .actionGameFragmentToResultFragment(
+                                it,
+                                args.gameConfiguration.questionNumber
+                            )
+                    )
+            }
         }
     }
 }

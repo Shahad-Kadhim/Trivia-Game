@@ -6,9 +6,9 @@ import com.example.triviatask.ui.game.OptionInteractionListener
 
 
 class OptionsAdapter (
-    items: List<String>,
+    items: List<Answer>,
     var listener: OptionInteractionListener,
-) : BaseAdapter<String>(items,listener) {
+) : BaseAdapter<Answer>(items,listener) {
 
     override val layoutId: Int = R.layout.item_option
 

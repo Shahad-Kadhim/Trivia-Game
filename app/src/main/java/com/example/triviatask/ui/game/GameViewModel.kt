@@ -5,18 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.triviatask.model.Repository
 import com.example.triviatask.model.State
-import com.example.triviatask.model.data.triviaStart.TriviaStartResponse
-import com.example.triviatask.model.data.triviaStart.TriviaStartResult
+import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
+import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant.LEMON_TAG
+import com.example.triviatask.utils.convertToLocalQuestionInfo
 
-class GameViewModel : BaseViewModel(),OptionInteractionListener {
+class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     private val questionsList = MutableLiveData<List<TriviaStartResult>?>()
 
-    private val questionIndex = MutableLiveData<Int>()
+    val questionIndex = MutableLiveData<Int>()
 
-    private val positionOfQuestion = MutableLiveData(0)
+    val positionOfQuestion = MutableLiveData(0)
 
     var chooseOptions = ""
     var scores = 0
@@ -27,19 +28,25 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
         questionsList.value?.get(it)
     }
 
-    fun goToNextQuestion() {
+    val options = MutableLiveData<List<Answer>?>()
+//        Transformations.map(question) {
+//        it?.convertToLocalQuestionInfo()?.answers
+//    }
 
-        positionOfQuestion.value = positionOfQuestion.value?.plus(1) // 1+2+3+4....10
+    private fun goToNextQuestion() {
+
+        positionOfQuestion.postValue(positionOfQuestion.value?.plus(1)) // 1+2+3+4....10
 
         if (questionsList.value!!.size > positionOfQuestion.value!!) {
             positionOfQuestion.value?.let { setQuestion(it) }
         } else {
             scoreOfQuestionEvent.postValue(9)
         }
-//
-//        if(chooseOptions.equals(question.value?.correctAnswer)){
-//
-//        }
+
+        if (chooseOptions == question.value?.correctAnswer) {
+
+            scores++
+        }
 
     }
 
@@ -69,6 +76,9 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
     }
 
     private fun setQuestion(indexOfQuestion: Int) {
+        options.postValue(
+            questionsList.value?.get(indexOfQuestion)?.convertToLocalQuestionInfo()?.answers
+        )
         questionIndex.postValue(indexOfQuestion)
     }
 
@@ -76,13 +86,18 @@ class GameViewModel : BaseViewModel(),OptionInteractionListener {
         Log.i(LEMON_TAG, "Fail: ${throwable.message}")
     }
 
-    override fun onClickOption(option: String) {
+    override fun onClickOption(option: Answer) {
+        options.value = options.value?.apply {
+            forEach {
+                if (it.answer == question.value?.correctAnswer) {
+                    it.state = CheckOptions.SELECTED_CORRECT
+                }else{
+                    it.state = CheckOptions.SELECTED_INCORRECT
+                }
+            }
 
-        chooseOptions = option
-
+        }
     }
-
-
 
 
 }
