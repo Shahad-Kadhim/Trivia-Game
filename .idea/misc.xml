@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game/app/src/main/res/layout/fragment_game.xml" value="0.1" />
+        <entry key="..\:/Trivia-Game-new/app/src/main/res/layout/fragment_game.xml" value="0.1" />
+        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game3/app/src/main/res/layout/fragment_game.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/msi/AndroidStudioProjects/Trivia-Game3/app/src/main/res/layout/fragment_home.xml" value="0.14235055724417425" />
       </map>
     </option>
   </component>
