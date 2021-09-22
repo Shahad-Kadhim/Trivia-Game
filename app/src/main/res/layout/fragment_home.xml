@@ -157,18 +157,18 @@
             />
 
 
-<!--        <com.mcdev.quantitizerlibrary.HorizontalQuantitizer-->
-<!--            android:id="@+id/h_q"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="132dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.497"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:maxValue="50"-->
-<!--            app:minValue="1"-->
-<!--            app:value="@={viewModel.questionNumber}"/>-->
+        <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
+            android:id="@+id/hq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="132dp"
+            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxValue="50"
+            app:minValue="1"
+            app:value="@={viewModel.questionNumber}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

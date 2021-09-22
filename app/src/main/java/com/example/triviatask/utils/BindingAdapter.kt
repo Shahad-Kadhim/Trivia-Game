@@ -13,6 +13,8 @@ import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
 import com.example.triviatask.ui.game.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
+import com.mcdev.quantitizerlibrary.QuantitizerListener
 
 
 @BindingAdapter(value = ["app:entries"])
@@ -74,41 +76,41 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
     }
 }
 
-//
-//@BindingAdapter(value = ["minValue"])
-//fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
-//    value?.let { view.minValue = it }
-//}
-//
-//@BindingAdapter(value = ["maxValue"])
-//fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
-//    value?.let { view.maxValue = it }
-//}
-//
-//
-//@BindingAdapter(value = ["value"])
-//fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
-//    if (view.value != value){
-//        value?.let { view.value = it }
-//    }
-//}
-//
-//@InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
-//fun getPikerNumber(view: HorizontalQuantitizer): Int? {
-//    return view.value
-//}
-//
-//@BindingAdapter("pikerNumberChangeEvent")
-//fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
-//    view.setQuantitizerListener(object : QuantitizerListener {
-//        override fun onDecrease() {
-//            attChange.onChange()
-//        }
-//        override fun onIncrease() {
-//            attChange.onChange()
-//        }
-//    })
-//}
+
+@BindingAdapter(value = ["minValue"])
+fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
+    value?.let { view.minValue = it }
+}
+
+@BindingAdapter(value = ["maxValue"])
+fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
+    value?.let { view.maxValue = it }
+}
+
+
+@BindingAdapter(value = ["value"])
+fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
+    if (view.value != value){
+        value?.let { view.value = it }
+    }
+}
+
+@InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
+fun getPikerNumber(view: HorizontalQuantitizer): Int? {
+    return view.value
+}
+
+@BindingAdapter("pikerNumberChangeEvent")
+fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
+    view.setQuantitizerListener(object : QuantitizerListener {
+        override fun onDecrease() {
+            attChange.onChange()
+        }
+        override fun onIncrease() {
+            attChange.onChange()
+        }
+    })
+}
 @BindingAdapter(value = ["app:optionsBackgroundColor"])
 fun setBackgroundColor(view: View, state: CheckOptions) {
 

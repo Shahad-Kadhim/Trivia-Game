@@ -45,7 +45,7 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
     private fun startGame() {
         args.gameConfiguration.apply {
             viewModel.getQuestion(
-                5,
+                questionNumber,
                 categoryGameId,
                 difficultyGame,
                 gameType
