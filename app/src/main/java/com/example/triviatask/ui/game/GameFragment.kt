@@ -21,7 +21,6 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
     override val bindingInflater: (LayoutInflater, Int, ViewGroup?, Boolean) -> FragmentGameBinding =
         DataBindingUtil::inflate
 
-
     @SuppressLint("SetTextI18n")
     override fun setUp() {
 
