@@ -9,6 +9,7 @@ import com.example.triviatask.model.State
 import com.example.triviatask.model.data.response.apiCategory.ApiCategoryResponse
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant
+import com.example.triviatask.utils.Event
 
 class HomeViewModel:BaseViewModel(){
 
@@ -16,7 +17,7 @@ class HomeViewModel:BaseViewModel(){
     val difficultyGame = MutableLiveData(DEFAULT_NUMBER_RADIO)
     val gameType = MutableLiveData(DEFAULT_NUMBER_RADIO)
     val questionNumber = MutableLiveData(DEFAULT_NUMBER_OF_QUESTION)
-    val gameConfigurationEvent = MutableLiveData<GameConfiguration>()
+    val gameConfigurationEvent = MutableLiveData<Event<GameConfiguration>>()
 
     private val _categoryList = MutableLiveData<ApiCategoryResponse>()
     val categoryList: LiveData<ApiCategoryResponse>
@@ -40,12 +41,15 @@ class HomeViewModel:BaseViewModel(){
 
     fun onClickStartGame(){
         gameConfigurationEvent.postValue(
-            GameConfiguration(
-                getCategoryId() ?: GENERAL_KNOWLEDGE_ID,
-                questionNumber.value ?: DEFAULT_NUMBER_OF_QUESTION,
-                Constant.difficulty[difficultyGame.value!!],
-                Constant.gameType[gameType.value!!]
-            )
+           Event(
+               GameConfiguration(
+                   getCategoryId() ?: GENERAL_KNOWLEDGE_ID,
+                   questionNumber.value ?: DEFAULT_NUMBER_OF_QUESTION,
+                   Constant.difficulty[difficultyGame.value!!],
+                   Constant.gameType[gameType.value!!]
+               )
+           )
+
         )
     }
 

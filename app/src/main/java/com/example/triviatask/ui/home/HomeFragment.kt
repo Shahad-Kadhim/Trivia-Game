@@ -1,12 +1,15 @@
 package com.example.triviatask.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.ui.base.BaseFragment
+import com.example.triviatask.utils.EventObserver
 import com.example.triviatask.utils.goToFragment
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
@@ -28,9 +31,10 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
     }
 
     private fun setHomeToGameNavigation() {
-        viewModel.gameConfigurationEvent.observe(this) {
-           binding?.startGameBtn?.goToFragment(HomeFragmentDirections.actionHomeFragmentToGameFragment(it))
-        }
+        viewModel.gameConfigurationEvent.observe(this , EventObserver {
+            binding?.startGameBtn?.goToFragment(HomeFragmentDirections.actionHomeFragmentToGameFragment(it))
+            Log.i(LOG_TAG , it.toString())
+        })
     }
 
 }

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentResultBinding
 import com.example.triviatask.ui.base.BaseFragment
+import com.example.triviatask.utils.EventObserver
 import com.example.triviatask.utils.goToFragment
 
 
@@ -33,7 +34,7 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
     }
 
     private fun observeEvent() {
-        viewModel.liveDataEvent.observe(this , {
+        viewModel.liveDataEvent.observe(this , EventObserver {
             binding?.backBtn?.goToFragment(ResultFragmentDirections.actionResultFragmentToHomeFragment())
         })
     }

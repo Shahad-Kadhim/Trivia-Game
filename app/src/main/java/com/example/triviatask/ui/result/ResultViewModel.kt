@@ -2,18 +2,19 @@ package com.example.triviatask.ui.result
 
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.ui.base.BaseViewModel
+import com.example.triviatask.utils.Event
 
 class ResultViewModel: BaseViewModel() {
 
     var finalScore = MutableLiveData<Int>()
-    var liveDataEvent = MutableLiveData<Boolean>()
+    var liveDataEvent = MutableLiveData<Event<Boolean>>()
 
     fun setScore(score: Int){
         finalScore.postValue(score)
     }
 
     fun onClickExist(){
-        liveDataEvent.postValue(true)
+        liveDataEvent.postValue(Event(true))
     }
 
 }

@@ -8,28 +8,25 @@ import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant.LEMON_TAG
+import com.example.triviatask.utils.Event
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
     val questionsList = MutableLiveData<List<LocalTriviaStart>?>()
     val positionOfQuestion = MutableLiveData(0)
-    val scoreOfQuestionEvent = MutableLiveData<Int>()
+    val scoreOfQuestionEvent = MutableLiveData<Event<Int>>()
     val options = MutableLiveData<List<Answer>?>()
     val question = MutableLiveData<LocalTriviaStart?>()
-
     val isAnswerSelected = MutableLiveData(false)
-
     private var scores = 0
 
     fun goToNextQuestion() {
         isAnswerSelected.postValue(false)
-
         positionOfQuestion.value = positionOfQuestion.value?.plus(1)!!
-
         if (questionsList.value!!.size > positionOfQuestion.value!!) {
             setQuestion()
         } else {
-            scoreOfQuestionEvent.postValue(scores)
+            scoreOfQuestionEvent.postValue(Event(scores))
         }
     }
 

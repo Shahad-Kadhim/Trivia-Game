@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
 import com.example.triviatask.ui.base.BaseFragment
+import com.example.triviatask.utils.EventObserver
+import com.example.triviatask.utils.goToFragment
 
 class GameFragment : BaseFragment<FragmentGameBinding>() {
 
@@ -54,18 +56,10 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
     }
 
     private fun setScoreToResultNavigation() {
-        viewModel.scoreOfQuestionEvent.observe(this) {
-            view?.let { viewNavigation ->
-                Navigation
-                    .findNavController(viewNavigation)
-                    .navigate(
-                        GameFragmentDirections
-                            .actionGameFragmentToResultFragment(
-                                it,
-                                args.gameConfiguration.questionNumber
-                            )
-                    )
-            }
-        }
+        viewModel.scoreOfQuestionEvent.observe(this , EventObserver {
+            view?.goToFragment( GameFragmentDirections.actionGameFragmentToResultFragment(it,
+                args.gameConfiguration.questionNumber))
+        })
     }
+
 }
