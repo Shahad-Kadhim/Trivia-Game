@@ -48,7 +48,7 @@ fun View.goToFragment(navDir: NavDirections) {
 fun TriviaStartResult.convertToLocalTriviaStart(): LocalTriviaStart {
     val allOptions = this.incorrectAnswers?.toMutableList()?.apply {
         correctAnswer?.let { add(it) }
-    }?.shuffled()?.map {
+    }?.sortedByDescending { it }?.map {
         Answer(it, CheckOptions.UNSELECTED)
     }
     return LocalTriviaStart(this.question, allOptions, this.type, this.correctAnswer)
