@@ -131,31 +131,6 @@ fun setBackgroundColor(view: TextView, state: CheckOptions) {
     }
 }
 
-@BindingAdapter(value = ["app:ifWinner"])
-fun checkWinner(view: TextView, valueScore: Int) {
-    when {
-        valueScore < 5 -> {
-            view.text = "You Lost"
-        }
-        else -> {
-            view.text = "You Win"
-        }
-    }
-}
-
-
-@BindingAdapter(value = ["app:ifCongrats"])
-fun checkCongrats(view: TextView, valueScore: Int) {
-    when {
-        valueScore < 5 -> {
-            view.text = "Hard Luck!"
-        }
-        else -> {
-            view.text = "Congrats!"
-        }
-    }
-}
-
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) =

@@ -32,7 +32,7 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
                 OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
 
         }
-        setScoreToResultNavigation()
+        navToResultFragment()
         startGame()
 
     }
@@ -49,7 +49,7 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
     }
 
 
-    private fun setScoreToResultNavigation() {
+    private fun navToResultFragment() {
         viewModel.scoreOfQuestionEvent.observe(this, EventObserver {
             view?.goToFragment(
                 GameFragmentDirections.actionGameFragmentToResultFragment(

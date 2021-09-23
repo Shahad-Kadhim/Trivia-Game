@@ -1,13 +1,11 @@
 package com.example.triviatask.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
-import com.example.triviatask.utils.State
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.EventObserver
 import com.example.triviatask.utils.goToFragment
@@ -27,19 +25,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
             this.viewModel=this@HomeFragment.viewModel
         }
 
-        setHomeToGameNavigation()
+        navTOGameFragment()
 
-        viewModel.categoryList.observe(this,{
-            when(it){
-                is State.Error -> Log.i("kk", "error")
-                State.Loading -> Log.i("kk", "loading")
-                is State.Success -> Log.i("kk", "success")
-            }
-
-        })
     }
 
-    private fun setHomeToGameNavigation() {
+    private fun navTOGameFragment() {
         viewModel.gameConfigurationEvent.observe(this , EventObserver {
             binding?.startGameBtn?.goToFragment(HomeFragmentDirections.actionHomeFragmentToGameFragment(it))
         })

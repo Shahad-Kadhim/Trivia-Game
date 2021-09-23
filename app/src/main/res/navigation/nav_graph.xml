@@ -14,10 +14,6 @@
             android:id="@+id/action_homeFragment_to_gameFragment"
             app:destination="@id/gameFragment"
             app:popUpTo="@id/homeFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_settingFragment"
-            app:destination="@id/settingFragment"
-            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -48,9 +44,4 @@
             android:name="totulNumOfQuestion"
             app:argType="integer" />
     </fragment>
-    <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.example.triviatask.ui.setting.SettingFragment"
-        android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting"/>
 </navigation>
