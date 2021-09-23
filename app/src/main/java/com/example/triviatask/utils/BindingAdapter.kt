@@ -1,21 +1,19 @@
 package com.example.triviatask.utils
 
-import android.R
-import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
+import com.example.triviatask.R
 import com.example.triviatask.model.State
 import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
 import com.example.triviatask.ui.game.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
-import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
-import com.mcdev.quantitizerlibrary.QuantitizerListener
 
 
 @BindingAdapter(value = ["app:entries"])
@@ -23,7 +21,7 @@ fun setEntries(view: Spinner, entries: List<TriviaCategory>?) {
     if (entries != null) {
         ArrayAdapter(
             view.context,
-            R.layout.simple_spinner_dropdown_item, (entries.map { it.name })
+            android.R.layout.simple_spinner_dropdown_item, (entries.map { it.name })
         )
             .also {
                 it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -115,12 +113,25 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
 //}
 
 @BindingAdapter(value = ["app:optionsBackgroundColor"])
-fun setBackgroundColor(view: View, state: CheckOptions) {
+fun setBackgroundColor(view: TextView, state: CheckOptions) {
 
     when (state) {
-        CheckOptions.UNSELECTED -> view.setBackgroundColor(Color.GRAY)
-        CheckOptions.SELECTED_CORRECT -> view.setBackgroundColor(Color.GREEN)
-        CheckOptions.SELECTED_INCORRECT -> view.setBackgroundColor(Color.RED)
+        CheckOptions.UNSELECTED -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.default_options_background)
+        }
+        CheckOptions.SELECTED_CORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.black))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.currect_options_background)
+        }
+        CheckOptions.SELECTED_INCORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.white))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.incurrect_options_background)
+        }
+
 
     }
 }
@@ -163,7 +174,7 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) =
 
 @BindingAdapter(value = ["app:showOnSuccess"])
 fun <T> showOnSuccess(view: View, state: State<T>?) {
-    if (state != null){
+    if (state != null) {
         view.visibility =
             if (state is State.Success) {
                 View.VISIBLE
@@ -175,7 +186,7 @@ fun <T> showOnSuccess(view: View, state: State<T>?) {
 
 @BindingAdapter(value = ["app:showOnError"])
 fun <T> showOnError(view: View, state: State<T>?) {
-    if (state != null){
+    if (state != null) {
         view.visibility =
             if (state is State.Error) {
                 View.VISIBLE
@@ -187,7 +198,7 @@ fun <T> showOnError(view: View, state: State<T>?) {
 
 @BindingAdapter(value = ["app:showOnLoading"])
 fun <T> showOnLoading(view: View, state: State<T>?) {
-    if (state != null){
+    if (state != null) {
         view.visibility =
             if (state is State.Loading) {
                 View.VISIBLE
