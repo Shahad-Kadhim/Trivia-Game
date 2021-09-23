@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#5f66d0</color>
     <color name="secondary_background">#e4aa6b</color>
+    <color name="progressbar_background">#FADEC0</color>
     <color name="primary_text_color">#3e4e5e</color>
 </resources>

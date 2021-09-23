@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentGameBinding
@@ -30,12 +29,6 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
         binding?.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.viewModel = this@GameFragment.viewModel
-
-            viewModel?.positionOfQuestion?.observe(this@GameFragment) {
-                this.progressOfTotalQuestion.text = "Question Number " +
-                        "${it.plus(1)} /5"
-            }
-
             this.recyclerOfQuestion.adapter =
                 OptionsAdapter(mutableListOf(), this@GameFragment.viewModel)
 
@@ -57,9 +50,13 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
     }
 
     private fun setScoreToResultNavigation() {
-        viewModel.scoreOfQuestionEvent.observe(this , EventObserver {
-            view?.goToFragment( GameFragmentDirections.actionGameFragmentToResultFragment(it,
-                args.gameConfiguration.questionNumber))
+        viewModel.scoreOfQuestionEvent.observe(this, EventObserver {
+            view?.goToFragment(
+                GameFragmentDirections.actionGameFragmentToResultFragment(
+                    it,
+                    args.gameConfiguration.questionNumber
+                )
+            )
         })
     }
 

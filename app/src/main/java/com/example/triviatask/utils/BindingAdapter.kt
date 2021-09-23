@@ -1,7 +1,6 @@
 package com.example.triviatask.utils
 
 import android.R
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.Log
 import android.view.View
@@ -24,7 +23,7 @@ fun setEntries(view: Spinner, entries: List<TriviaCategory>?) {
     if (entries != null) {
         ArrayAdapter(
             view.context,
-            R.layout.simple_spinner_dropdown_item, (entries.map { it.name })
+            android.R.layout.simple_spinner_dropdown_item, (entries.map { it.name })
         )
             .also {
                 it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -52,6 +51,7 @@ fun setSelectedListener(view: Spinner, changeListener: InverseBindingListener) {
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
             changeListener.onChange()
         }
+
         override fun onNothingSelected(p0: AdapterView<*>?) {}
     }
 }
@@ -83,10 +83,6 @@ fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
     if (view.value != value) {
         value?.let { view.value = it }
     }
-    view.setMinusIconColor("#5f66d0")
-    view.setMinusIconBackgroundColor("#23E4AA6B")
-    view.setPlusIconColor("#e4aa6b")
-    view.setPlusIconBackgroundColor("#325F66D0")
 }
 
 @InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
@@ -96,8 +92,6 @@ fun getPikerNumber(view: HorizontalQuantitizer): Int? {
 
 @BindingAdapter("pikerNumberChangeEvent")
 fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
-
-
     view.setQuantitizerListener(object : QuantitizerListener {
         override fun onDecrease() {
             attChange.onChange()
@@ -110,12 +104,25 @@ fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListe
 }
 
 @BindingAdapter(value = ["app:optionsBackgroundColor"])
-fun setBackgroundColor(view: View, state: CheckOptions) {
+fun setBackgroundColor(view: TextView, state: CheckOptions) {
 
     when (state) {
-        CheckOptions.UNSELECTED -> view.setBackgroundColor(Color.GRAY)
-        CheckOptions.SELECTED_CORRECT -> view.setBackgroundColor(Color.GREEN)
-        CheckOptions.SELECTED_INCORRECT -> view.setBackgroundColor(Color.RED)
+        CheckOptions.UNSELECTED -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.default_options_background)
+        }
+        CheckOptions.SELECTED_CORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.currect_options_background)
+        }
+        CheckOptions.SELECTED_INCORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, R.drawable.incurrect_options_background)
+        }
+
 
     }
 }
@@ -158,29 +165,38 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) =
 
 @BindingAdapter(value = ["app:showOnSuccess"])
 fun <T> showOnSuccess(view: View, state: State<T>?) {
-    if (state is State.Success) {
-        view.visibility = View.VISIBLE
-    } else {
-        view.visibility = View.INVISIBLE
+    if (state != null) {
+        view.visibility =
+            if (state is State.Success) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
     }
 }
 
 @BindingAdapter(value = ["app:showOnError"])
 fun <T> showOnError(view: View, state: State<T>?) {
-    if (state is State.Error) {
-        view.visibility = View.VISIBLE
-    } else {
-        view.visibility = View.INVISIBLE
+    if (state != null) {
+        view.visibility =
+            if (state is State.Error) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
     }
 }
 
 @BindingAdapter(value = ["app:showOnLoading"])
 fun <T> showOnLoading(view: View, state: State<T>?) {
-        if (state is State.Loading) {
-            view.visibility = View.VISIBLE
-        } else {
-            view.visibility = View.INVISIBLE
-        }
+    if (state != null) {
+        view.visibility =
+            if (state is State.Loading) {
+                View.VISIBLE
+            } else {
+                View.INVISIBLE
+            }
+    }
 
 }
 
