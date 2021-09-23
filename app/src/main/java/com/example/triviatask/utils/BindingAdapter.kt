@@ -197,6 +197,30 @@ fun <T> showOnLoading(view: View, state: State<T>?) {
     }
 
 }
+@BindingAdapter(value = ["app:ifWinner"  , "app:total"])
+fun checkWinner(view: TextView, valueScore: Int , totalNumber: Int) {
+    view.text = if(valueScore > totalNumber/2 ) { "You Win" }
+    else {  "You Lost"}
+}
+
+
+@BindingAdapter(value = ["app:ifCongrats" , "app:total"])
+fun checkCongrats(view: TextView, valueScore: Int , totalNumber: Int) {
+    view.text = if(valueScore > totalNumber/2 ) {  "Congrats!"  }
+    else { "Hard Luck!" }
+}
+
+@BindingAdapter(value = ["app:ifCelebration"  , "app:total"])
+fun checkCelebration(view: View, valueScore: Int, totalNumber: Int) {
+    view.visibility = if(valueScore > totalNumber/2 ) { View.VISIBLE }
+    else { View.GONE }
+}
+
+@BindingAdapter(value = ["app:ifLost"  , "app:total"])
+fun checkLost(view: View, valueScore: Int, totalNumber: Int) {
+    view.visibility = if(valueScore < totalNumber/2 ) { View.VISIBLE }
+    else { View.GONE }
+}
 
 
 
