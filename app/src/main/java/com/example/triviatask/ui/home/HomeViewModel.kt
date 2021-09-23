@@ -28,6 +28,7 @@ class HomeViewModel:BaseViewModel(){
     }
 
     private fun getAllCategories(){
+        _categoryList.postValue(State.Loading)
         observe(Repository.getCategories(),::onGetCategorySuccess, ::onGetCategoryError )
     }
 
@@ -36,7 +37,7 @@ class HomeViewModel:BaseViewModel(){
     }
 
     private fun onGetCategoryError(throwable: Throwable){
-        Log.i(Constant.LEMON_TAG, "Fail: ${throwable.message}")
+        _categoryList.postValue(State.Error(throwable.message.toString()))
     }
 
 

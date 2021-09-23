@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.triviatask.utils.add
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -17,7 +18,7 @@ abstract class BaseViewModel:ViewModel() {
     }
 
     fun <T>observe(
-        observable: Observable<T>,
+        observable: Single<T>,
         onSuccess:(T)->Unit,
         onError:(Throwable)-> Unit
     ){
