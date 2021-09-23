@@ -12,7 +12,7 @@ import com.example.triviatask.utils.Event
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
-    val questionsList = MutableLiveData<List<LocalTriviaStart>?>()
+    val questionsList = MutableLiveData<State<LocalTriviaStartResponse>?>()
     val positionOfQuestion = MutableLiveData(0)
     val scoreOfQuestionEvent = MutableLiveData<Event<Int>>()
     val options = MutableLiveData<List<Answer>?>()
@@ -23,7 +23,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
     fun goToNextQuestion() {
         isAnswerSelected.postValue(false)
         positionOfQuestion.value = positionOfQuestion.value?.plus(1)!!
-        if (questionsList.value!!.size > positionOfQuestion.value!!) {
+        if (questionsList.value!!.toData()?.questions?.size ?: 0 > positionOfQuestion.value!!) {
             setQuestion()
         } else {
             scoreOfQuestionEvent.postValue(Event(scores))
@@ -34,23 +34,29 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         amount: Int, category: Int?,
         level: String?, type: String?,
     ) =
-        observe(
-            Repository.getQuestion(amount, category, level, type),
-            ::onSetQuestionSuccess,
-            ::onSetQuestionError
-        )
+        apply {
 
-    private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse?>) {
-        questionsList.value = localTriviaQuestionResponse.toData()?.questions
+            questionsList.postValue(State.Loading)
+            observe(
+                Repository.getQuestion(amount, category, level, type),
+                ::onSetQuestionSuccess,
+                ::onSetQuestionError
+            )
+
+
+        }
+
+    private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse>?) {
+        questionsList.value = localTriviaQuestionResponse
         setQuestion()
     }
 
     private fun onSetQuestionError(throwable: Throwable) {
-        Log.i(LEMON_TAG, "Fail: ${throwable.message}")
+        questionsList.postValue(State.Error(throwable.message.toString()))
     }
 
     private fun setQuestion() =
-        questionsList.value?.get(positionOfQuestion.value!!)?.let {
+        questionsList.value?.toData()?.questions?.get(positionOfQuestion.value!!)?.let {
             options.postValue(it.answers)
             question.postValue(it)
         }
