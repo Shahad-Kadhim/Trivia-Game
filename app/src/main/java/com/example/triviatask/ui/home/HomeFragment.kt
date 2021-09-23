@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.model.State

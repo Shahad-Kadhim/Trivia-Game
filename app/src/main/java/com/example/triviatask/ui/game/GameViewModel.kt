@@ -1,13 +1,11 @@
 package com.example.triviatask.ui.game
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.model.Repository
 import com.example.triviatask.model.State
 import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
 import com.example.triviatask.ui.base.BaseViewModel
-import com.example.triviatask.utils.Constant.LEMON_TAG
 import com.example.triviatask.utils.Event
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
@@ -35,15 +33,12 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         level: String?, type: String?,
     ) =
         apply {
-
             questionsList.postValue(State.Loading)
             observe(
                 Repository.getQuestion(amount, category, level, type),
                 ::onSetQuestionSuccess,
                 ::onSetQuestionError
             )
-
-
         }
 
     private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse>?) {
@@ -63,17 +58,12 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
 
     override fun onClickOption(option: Answer) {
-
         isAnswerSelected.postValue(true)
-
         options.value = options.value?.apply {
             if (option.answer == question.value?.correctAnswer) {
-
                 option.state = CheckOptions.SELECTED_CORRECT
                 scores++
-
             } else {
-
                 option.state = CheckOptions.SELECTED_INCORRECT
                 this.filter { it.answer == question.value?.correctAnswer }
                     .forEach {
