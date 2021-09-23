@@ -110,8 +110,7 @@ fun setBackgroundColor(view: TextView, state: CheckOptions) {
     when (state) {
         CheckOptions.UNSELECTED -> {
             view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
-            view.background =
-                ContextCompat.getDrawable(view.context, R.drawable.default_options_background)
+            view.background = ContextCompat.getDrawable(view.context, R.drawable.default_options_background)
         }
         CheckOptions.SELECTED_CORRECT -> {
             view.setTextColor(ContextCompat.getColor(view.context, R.color.primary_text_color))
