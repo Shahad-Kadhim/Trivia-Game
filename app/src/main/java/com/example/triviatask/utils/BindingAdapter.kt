@@ -163,38 +163,29 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) =
 
 @BindingAdapter(value = ["app:showOnSuccess"])
 fun <T> showOnSuccess(view: View, state: State<T>?) {
-    if (state != null){
-        view.visibility =
-            if (state is State.Success) {
-                View.VISIBLE
-            } else {
-                View.INVISIBLE
-            }
+    if (state is State.Success) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
     }
 }
 
 @BindingAdapter(value = ["app:showOnError"])
 fun <T> showOnError(view: View, state: State<T>?) {
-    if (state != null){
-        view.visibility =
-            if (state is State.Error) {
-                View.VISIBLE
-            } else {
-                View.INVISIBLE
-            }
+    if (state is State.Error) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
     }
 }
 
 @BindingAdapter(value = ["app:showOnLoading"])
 fun <T> showOnLoading(view: View, state: State<T>?) {
-    if (state != null){
-        view.visibility =
-            if (state is State.Loading) {
-                View.VISIBLE
-            } else {
-                View.INVISIBLE
-            }
-    }
+        if (state is State.Loading) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.INVISIBLE
+        }
 
 }
 
