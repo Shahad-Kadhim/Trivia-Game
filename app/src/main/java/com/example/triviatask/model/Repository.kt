@@ -1,12 +1,8 @@
 package com.example.triviatask.model
 
-import android.util.Log
 import com.example.triviatask.model.network.API
-import com.example.triviatask.utils.Constant
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
-import com.example.triviatask.utils.convertToLocalTriviaStart
 import com.example.triviatask.utils.convertToLocalTriviaStartResponse
 
 object Repository {

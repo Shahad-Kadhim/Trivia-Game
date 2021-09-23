@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
 import com.example.triviatask.model.State
@@ -42,7 +45,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
     private fun setHomeToGameNavigation() {
         viewModel.gameConfigurationEvent.observe(this , EventObserver {
             binding?.startGameBtn?.goToFragment(HomeFragmentDirections.actionHomeFragmentToGameFragment(it))
-            Log.i(LOG_TAG , it.toString())
         })
     }
 

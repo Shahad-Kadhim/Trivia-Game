@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.triviatask.ui.home.HomeViewModel" />
@@ -20,21 +20,27 @@
             android:layout_width="700dp"
             android:layout_height="600dp"
             android:layout_marginEnd="-45dp"
-            android:layout_marginBottom="120dp"
             android:background="@drawable/circle"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup_difficulty"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.21" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/berkshire_swash"
             android:text="Trivia"
             android:textColor="@color/white"
             android:textSize="64sp"
+            android:transitionName="backgroundShape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,96 +60,205 @@
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Spinner
-            android:id="@+id/item_spinner"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginEnd="42dp"
             android:layout_marginBottom="32dp"
-            android:gravity="center_vertical"
-            android:paddingStart="4dp"
-            android:textSize="16sp"
-            android:pointerIcon="arrow"
-            android:visibility="invisible"
-
-            android:spinnerMode="dropdown"
-            app:showOnSuccess="@{viewModel.categoryList}"
-            app:entries="@{viewModel.categoryList.toData().triviaCategories}"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup_difficulty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:selectedValue="@={viewModel.gameCategory}" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup_difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/custem_background"
-            android:gravity="center"
-            android:visibility="invisible"
-            app:showOnSuccess="@{viewModel.categoryList}"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup_gameType"
+            android:elevation="2dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:selectRadioButtonIndex="@={viewModel.difficultyGame}">
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            app:showOnSuccess="@{viewModel.categoryList}">
 
-            <RadioButton
-                android:id="@+id/easy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Easy" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="32dp"
+                android:paddingTop="16dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="16dp">
 
-            <RadioButton
-                android:id="@+id/medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medium" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/belgrano"
+                    android:text="Category"
+                    android:textColor="@color/background"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:showOnSuccess="@{viewModel.categoryList}" />
 
-            <RadioButton
-                android:id="@+id/hard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hard" />
-        </RadioGroup>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/custem_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                    <Spinner
+                        android:id="@+id/item_spinner"
+                        android:layout_width="260dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingStart="4dp"
+                        android:spinnerMode="dialog"
+                        android:textSize="16sp"
+                        app:entries="@{viewModel.categoryList.toData().triviaCategories}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:selectedValue="@={viewModel.gameCategory}"
+                        app:showOnSuccess="@{viewModel.categoryList}" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/belgrano"
+                    android:text="Difficulty"
+                    android:textColor="@color/background"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_difficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    app:selectRadioButtonIndex="@={viewModel.difficultyGame}"
+                    app:showOnSuccess="@{viewModel.categoryList}">
+
+                    <RadioButton
+                        android:id="@+id/easy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/secondary_background"
+                        android:fontFamily="@font/belgrano"
+                        android:text="Easy"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/secondary_background"
+                        android:fontFamily="@font/belgrano"
+                        android:text="Medium"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/hard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/secondary_background"
+                        android:fontFamily="@font/belgrano"
+                        android:text="Hard"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
 
 
-        <RadioGroup
-            android:id="@+id/radioGroup_gameType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custem_background"
-            android:gravity="center"
-            android:visibility="invisible"
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/belgrano"
+                    android:text="Type"
+                    android:textColor="@color/background"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/radioGroup_difficulty"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup_difficulty" />
 
-            app:showOnSuccess="@{viewModel.categoryList}"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:selectRadioButtonIndex="@={viewModel.gameType}">
+                <RadioGroup
+                    android:id="@+id/radioGroup_gameType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7"
+                    app:selectRadioButtonIndex="@={viewModel.gameType}"
+                    app:showOnSuccess="@{viewModel.categoryList}">
 
-            <RadioButton
-                android:id="@+id/true_false"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="T/F" />
 
-            <RadioButton
-                android:id="@+id/multiple_choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Multiple Choice" />
+                    <RadioButton
+                        android:id="@+id/true_false"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/secondary_background"
+                        android:fontFamily="@font/belgrano"
 
-        </RadioGroup>
+                        android:text="T/F"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+
+                        />
+
+                    <RadioButton
+                        android:id="@+id/multiple_choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/secondary_background"
+                        android:fontFamily="@font/belgrano"
+                        android:text="Multiple Choice"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </RadioGroup>
+
+
+                <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
+                    android:id="@+id/quantitizer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup_gameType"
+                    app:maxValue="50"
+                    app:minValue="1"
+                    app:showOnSuccess="@{viewModel.categoryList}"
+                    app:value="@={viewModel.questionNumber}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -151,68 +266,47 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/start_btn_shape"
-            app:showOnSuccess="@{viewModel.categoryList}"
             android:onClick="@{() -> viewModel.onClickStartGame()}"
-            android:text="Start Game"
-            android:textSize="24sp"
-            android:visibility="invisible"
             android:paddingLeft="32dp"
             android:paddingTop="24dp"
             android:paddingRight="32dp"
             android:paddingBottom="24dp"
+            android:text="Start Game"
             android:textColor="@color/white"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:showOnSuccess="@{viewModel.categoryList}" />
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:visibility="invisible"
+                    app:showOnLoading="@{viewModel.categoryList}"
+                    app:lottie_rawRes="@raw/loading_cat"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
-        <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
-            android:id="@+id/quantitizer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="132dp"
-            android:visibility="invisible"
-            app:showOnSuccess="@{viewModel.categoryList}"
-            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:maxValue="50"
-            app:minValue="1"
-            app:value="@={viewModel.questionNumber}"
-            />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:visibility="invisible"
-            app:showOnLoading="@{viewModel.categoryList}"
-            app:lottie_rawRes="@raw/loading_cat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:visibility="invisible"
-            app:lottie_rawRes="@raw/error"
-            app:showOnError="@{viewModel.categoryList}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/error"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:visibility="invisible"
+                    app:lottie_rawRes="@raw/error"
+                    app:showOnError="@{viewModel.categoryList}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
