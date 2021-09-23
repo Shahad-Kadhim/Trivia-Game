@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
@@ -113,14 +114,26 @@ fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListe
         }
     })
 }
-
 @BindingAdapter(value = ["app:optionsBackgroundColor"])
-fun setBackgroundColor(view: View, state: CheckOptions) {
+fun setBackgroundColor(view: TextView, state: CheckOptions) {
 
     when (state) {
-        CheckOptions.UNSELECTED -> view.setBackgroundColor(Color.GRAY)
-        CheckOptions.SELECTED_CORRECT -> view.setBackgroundColor(Color.GREEN)
-        CheckOptions.SELECTED_INCORRECT -> view.setBackgroundColor(Color.RED)
+        CheckOptions.UNSELECTED -> {
+            view.setTextColor(ContextCompat.getColor(view.context, com.example.triviatask.R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, com.example.triviatask.R.drawable.default_options_background)
+        }
+        CheckOptions.SELECTED_CORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, com.example.triviatask.R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, com.example.triviatask.R.drawable.currect_options_background)
+        }
+        CheckOptions.SELECTED_INCORRECT -> {
+            view.setTextColor(ContextCompat.getColor(view.context, com.example.triviatask.R.color.primary_text_color))
+            view.background =
+                ContextCompat.getDrawable(view.context, com.example.triviatask.R.drawable.incurrect_options_background)
+        }
+
 
     }
 }
