@@ -22,9 +22,6 @@ object Repository {
     fun getCategories() =
         wrap(api.getApiCategory())
 
-    fun getCountGlobal() =
-        wrap(api.getApiCountGlobal())
-
 
     private fun <T> wrap(response: Single<Response<T>>): Single<State<T>> {
         return response.map {
