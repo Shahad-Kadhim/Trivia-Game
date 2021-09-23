@@ -26,6 +26,7 @@
             android:layout_marginEnd="16dp"
             android:textColor="@color/white"
             android:textStyle="bold"
+            app:showOnSuccess="@{viewModel.questionsList}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:indeterminate="false"
-            android:max="@{viewModel.questionsList.size() + 1 }"
+            app:showOnSuccess="@{viewModel.questionsList}"
+            android:max="@{viewModel.questionsList.toData().questions.size() +1 }"
             android:minHeight="8dp"
             android:progress="@{viewModel.positionOfQuestion + 1}"
             android:progressTint="@color/black"
@@ -55,6 +57,7 @@
             android:layout_height="0dp"
             android:layout_marginVertical="24dp"
             app:cardCornerRadius="32dp"
+            app:showOnSuccess="@{viewModel.questionsList}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearProgressIndicator"
             app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator"
@@ -113,6 +116,36 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:showOnLoading="@{viewModel.questionsList}"
+            app:lottie_rawRes="@raw/loading_cat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:lottie_rawRes="@raw/error"
+            app:showOnError="@{viewModel.questionsList}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

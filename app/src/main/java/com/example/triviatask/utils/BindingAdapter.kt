@@ -14,8 +14,6 @@ import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
 import com.example.triviatask.ui.game.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
-import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
-import com.mcdev.quantitizerlibrary.QuantitizerListener
 
 
 @BindingAdapter(value = ["app:entries"])
