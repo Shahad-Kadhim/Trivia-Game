@@ -1,5 +1,6 @@
 package com.example.triviatask.ui.game
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.model.Repository
 import com.example.triviatask.utils.State
@@ -12,21 +13,27 @@ import com.example.triviatask.utils.Event
 
 class GameViewModel : BaseViewModel(), OptionInteractionListener {
 
-    val questionsList = MutableLiveData<State<LocalTriviaStartResponse>?>()
-    val positionOfQuestion = MutableLiveData(0)
-    val scoreOfQuestionEvent = MutableLiveData<Event<Int>>()
-    val options = MutableLiveData<List<Answer>?>()
-    val question = MutableLiveData<LocalTriviaStart?>()
-    val isAnswerSelected = MutableLiveData(false)
+    private val _questionsList = MutableLiveData<State<LocalTriviaStartResponse>?>()
+    val questionsList:LiveData<State<LocalTriviaStartResponse>?> =_questionsList
+    private val _positionOfQuestion = MutableLiveData(0)
+    val positionOfQuestion:LiveData<Int> =_positionOfQuestion
+    private val _scoreOfQuestionEvent = MutableLiveData<Event<Int>>()
+    val scoreOfQuestionEvent :LiveData<Event<Int>> =_scoreOfQuestionEvent
+    private val _options = MutableLiveData<List<Answer>?>()
+    val options:LiveData<List<Answer>?> =_options
+    private val _question = MutableLiveData<LocalTriviaStart?>()
+    val question:LiveData<LocalTriviaStart?> =_question
+    private val _isAnswerSelected = MutableLiveData(false)
+    val isAnswerSelected :LiveData<Boolean> =  _isAnswerSelected
     private var scores = 0
 
     fun goToNextQuestion() {
-        isAnswerSelected.postValue(false)
-        positionOfQuestion.value = positionOfQuestion.value?.plus(1)!!
-        if (questionsList.value!!.toData()?.questions?.size ?: 0 > positionOfQuestion.value!!) {
+        _isAnswerSelected.postValue(false)
+        _positionOfQuestion.value = positionOfQuestion.value?.plus(1)!!
+        if (_questionsList.value!!.toData()?.questions?.size ?: 0 > positionOfQuestion.value!!) {
             setQuestion()
         } else {
-            scoreOfQuestionEvent.postValue(Event(scores))
+            _scoreOfQuestionEvent.postValue(Event(scores))
         }
     }
 
@@ -35,7 +42,7 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         level: String?, type: String?,
     ) =
         apply {
-            questionsList.postValue(State.Loading)
+            _questionsList.postValue(State.Loading)
             observe(
                 Repository.getQuestion(amount, category, level, type),
                 ::onSetQuestionSuccess,
@@ -44,30 +51,30 @@ class GameViewModel : BaseViewModel(), OptionInteractionListener {
         }
 
     private fun onSetQuestionSuccess(localTriviaQuestionResponse: State<LocalTriviaStartResponse>?) {
-        questionsList.value = localTriviaQuestionResponse
+        _questionsList.value = localTriviaQuestionResponse
         setQuestion()
     }
 
     private fun onSetQuestionError(throwable: Throwable) {
-        questionsList.postValue(State.Error(throwable.message.toString()))
+        _questionsList.postValue(State.Error(throwable.message.toString()))
     }
 
     private fun setQuestion() =
-        questionsList.value?.toData()?.questions?.get(positionOfQuestion.value!!)?.let {
-            options.postValue(it.answers)
-            question.postValue(it)
+        _questionsList.value?.toData()?.questions?.get(positionOfQuestion.value!!)?.let {
+            _options.postValue(it.answers)
+            _question.postValue(it)
         }
 
 
     override fun onClickOption(option: Answer) {
-        isAnswerSelected.postValue(true)
-        options.value = options.value?.apply {
-            if (option.answer == question.value?.correctAnswer) {
+        _isAnswerSelected.postValue(true)
+        _options.value = _options.value?.apply {
+            if (option.answer == _question.value?.correctAnswer) {
                 option.state = CheckOptions.SELECTED_CORRECT
                 scores++
             } else {
                 option.state = CheckOptions.SELECTED_INCORRECT
-                this.filter { it.answer == question.value?.correctAnswer }
+                this.filter { it.answer == _question.value?.correctAnswer }
                     .forEach {
                         it.state = CheckOptions.SELECTED_CORRECT
                     }
