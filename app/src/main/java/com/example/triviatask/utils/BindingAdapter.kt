@@ -1,6 +1,7 @@
 package com.example.triviatask.utils
 
 import android.R
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.Log
 import android.view.View
@@ -51,7 +52,6 @@ fun setSelectedListener(view: Spinner, changeListener: InverseBindingListener) {
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
             changeListener.onChange()
         }
-
         override fun onNothingSelected(p0: AdapterView<*>?) {}
     }
 }
@@ -77,23 +77,16 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
     }
 }
 
-
-@BindingAdapter(value = ["minValue"])
-fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
-    value?.let { view.minValue = it }
-}
-
-@BindingAdapter(value = ["maxValue"])
-fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
-    value?.let { view.maxValue = it }
-}
-
-
+@SuppressLint("ResourceType")
 @BindingAdapter(value = ["value"])
 fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
     if (view.value != value) {
         value?.let { view.value = it }
     }
+    view.setMinusIconColor("#5f66d0")
+    view.setMinusIconBackgroundColor("#23E4AA6B")
+    view.setPlusIconColor("#e4aa6b")
+    view.setPlusIconBackgroundColor("#325F66D0")
 }
 
 @InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
@@ -103,6 +96,8 @@ fun getPikerNumber(view: HorizontalQuantitizer): Int? {
 
 @BindingAdapter("pikerNumberChangeEvent")
 fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
+
+
     view.setQuantitizerListener(object : QuantitizerListener {
         override fun onDecrease() {
             attChange.onChange()
