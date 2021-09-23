@@ -4,17 +4,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.triviatask.ui.result.ResultViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6552A1" >
+        android:background="@color/background" >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleType="centerCrop"
+            android:scrollbarDefaultDelayBeforeFade="300"
+            app:ifCelebration="@{viewModel.finalScore}"
+            app:total="@{viewModel.totalNumberScore}"
+            app:lottie_rawRes="@raw/celebration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingTop="30dp"
+            android:scaleType="centerCrop"
+            android:scrollbarDefaultDelayBeforeFade="300"
+            app:ifLost="@{viewModel.finalScore}"
+            app:total="@{viewModel.totalNumberScore}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:lottie_autoPlay="true"
+            app:layout_constraintVertical_bias="0.1"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ghost" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:ifCelebration="@{viewModel.finalScore}"
+            app:total="@{viewModel.totalNumberScore}"
+            android:src="@drawable/win_badge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView3"
@@ -24,6 +69,7 @@
             android:fontFamily="@font/alegreya_sans_sc_extrabold"
             android:gravity="center"
             android:text="You Win"
+            app:total="@{viewModel.totalNumberScore}"
             app:ifWinner="@{viewModel.finalScore}"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -32,58 +78,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/win_badge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/arbutus_slab"
             android:gravity="center"
-            tools:text="Congrats !"
-            app:ifCongrats="@{viewModel.finalScore}"
             android:textColor="@color/white"
             android:textSize="32dp"
+
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:ifCongrats="@{viewModel.finalScore}"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:total="@{viewModel.totalNumberScore}"
+            tools:text="Congrats !" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.finalScore.toString()+`/10`}"
-            tools:text="8/10"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/arbutus_slab"
             android:gravity="center"
+            android:text="@{viewModel.finalScore +`/`+ viewModel.totalNumberScore}"
             android:textColor="@color/white"
             android:textSize="26dp"
             android:textStyle="bold"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toTopOf="@+id/back_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            tools:text="8/10" />
 
-        <Button
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/back_btn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Exist"
-            android:layout_marginHorizontal="35dp"
-            android:paddingVertical="10dp"
+            android:background="@drawable/round_top_right"
+            android:backgroundTint="@color/secondary_background"
             android:onClick="@{() -> viewModel.onClickExist()}"
-            android:backgroundTint="#6caea6"
-            android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:paddingHorizontal="75dp"
+            android:paddingVertical="20dp"
+            android:text="Back"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

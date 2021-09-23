@@ -39,7 +39,7 @@ class ResultFragment: BaseFragment<FragmentResultBinding>() {
         })
     }
 
-    private fun setScores() = viewModel.setScore(args.scoreGame)
+    private fun setScores() = viewModel.setScore( args.scoreGame , args.totulNumOfQuestion)
 
 
 }

@@ -20,6 +20,7 @@
             android:layout_width="700dp"
             android:layout_height="600dp"
             android:layout_marginEnd="-45dp"
+            android:layout_marginBottom="120dp"
             android:background="@drawable/circle"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -40,7 +41,6 @@
             android:text="Trivia"
             android:textColor="@color/white"
             android:textSize="64sp"
-            android:transitionName="backgroundShape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -266,7 +266,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/start_btn_shape"
+            app:showOnSuccess="@{viewModel.categoryList}"
             android:onClick="@{() -> viewModel.onClickStartGame()}"
+            android:text="Start Game"
+            android:textSize="24sp"
+            android:visibility="invisible"
+
             android:paddingLeft="32dp"
             android:paddingTop="24dp"
             android:paddingRight="32dp"
