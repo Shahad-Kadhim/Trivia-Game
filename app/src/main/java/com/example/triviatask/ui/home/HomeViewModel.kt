@@ -19,8 +19,8 @@ class HomeViewModel:BaseViewModel(){
     val questionNumber = MutableLiveData(DEFAULT_NUMBER_OF_QUESTION)
     val gameConfigurationEvent = MutableLiveData<Event<GameConfiguration>>()
 
-    private val _categoryList = MutableLiveData<ApiCategoryResponse>()
-    val categoryList: LiveData<ApiCategoryResponse>
+    private val _categoryList = MutableLiveData<State<ApiCategoryResponse>>()
+    val categoryList: LiveData<State<ApiCategoryResponse>>
         get() = _categoryList
 
     init {
@@ -32,7 +32,8 @@ class HomeViewModel:BaseViewModel(){
     }
 
     private fun onGetCategorySuccess(apiCategoryResponse: State<ApiCategoryResponse>){
-        _categoryList.postValue(apiCategoryResponse.toData()) }
+        _categoryList.postValue(apiCategoryResponse)
+    }
 
     private fun onGetCategoryError(throwable: Throwable){
         Log.i(Constant.LEMON_TAG, "Fail: ${throwable.message}")
@@ -54,7 +55,7 @@ class HomeViewModel:BaseViewModel(){
     }
 
     private fun getCategoryId(): Int? {
-        return categoryList.value?.triviaCategories?.filter {
+        return categoryList.value?.toData()?.triviaCategories?.filter {
             it.name == gameCategory.value }?.map { it.id }?.first()
     }
 

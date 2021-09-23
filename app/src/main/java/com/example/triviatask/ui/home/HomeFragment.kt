@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
+import com.example.triviatask.model.State
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.EventObserver
 import com.example.triviatask.utils.goToFragment
@@ -28,6 +29,15 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
         }
 
         setHomeToGameNavigation()
+
+        viewModel.categoryList.observe(this,{
+            when(it){
+                is State.Error -> Log.i("kk", "error")
+                State.Loading -> Log.i("kk", "loading")
+                is State.Success -> Log.i("kk", "success")
+            }
+
+        })
     }
 
     private fun setHomeToGameNavigation() {
@@ -36,5 +46,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>()   {
             Log.i(LOG_TAG , it.toString())
         })
     }
+
+
 
 }

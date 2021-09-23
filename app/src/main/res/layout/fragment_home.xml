@@ -66,8 +66,11 @@
             android:paddingStart="4dp"
             android:textSize="16sp"
             android:pointerIcon="arrow"
+            android:visibility="invisible"
+
             android:spinnerMode="dropdown"
-            app:entries="@{viewModel.categoryList.triviaCategories}"
+            app:showOnSuccess="@{viewModel.categoryList}"
+            app:entries="@{viewModel.categoryList.toData().triviaCategories}"
             app:layout_constraintBottom_toTopOf="@+id/radioGroup_difficulty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -83,6 +86,8 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/custem_background"
             android:gravity="center"
+            android:visibility="invisible"
+            app:showOnSuccess="@{viewModel.categoryList}"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/radioGroup_gameType"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +122,9 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/custem_background"
             android:gravity="center"
+            android:visibility="invisible"
+
+            app:showOnSuccess="@{viewModel.categoryList}"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -144,9 +152,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/start_btn_shape"
+            app:showOnSuccess="@{viewModel.categoryList}"
             android:onClick="@{() -> viewModel.onClickStartGame()}"
             android:text="Start Game"
             android:textSize="24sp"
+            android:visibility="invisible"
+
             android:paddingLeft="32dp"
             android:paddingTop="24dp"
             android:paddingRight="32dp"
@@ -157,18 +168,52 @@
             />
 
 
-<!--        <com.mcdev.quantitizerlibrary.HorizontalQuantitizer-->
-<!--            android:id="@+id/hq"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="132dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.497"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:maxValue="50"-->
-<!--            app:minValue="1"-->
-<!--            app:value="@={viewModel.questionNumber}"/>-->
+        <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
+            android:id="@+id/quantitizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="132dp"
+            android:visibility="invisible"
+            app:showOnSuccess="@{viewModel.categoryList}"
+            app:layout_constraintBottom_toTopOf="@+id/start_game_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxValue="50"
+            app:minValue="1"
+            app:value="@={viewModel.questionNumber}"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:showOnLoading="@{viewModel.categoryList}"
+            app:lottie_rawRes="@raw/loading_cat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:lottie_rawRes="@raw/error"
+            app:showOnError="@{viewModel.categoryList}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
