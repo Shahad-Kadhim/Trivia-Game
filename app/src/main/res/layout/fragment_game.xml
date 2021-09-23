@@ -127,7 +127,7 @@
             app:lottie_loop="true"
             android:visibility="invisible"
             app:showOnLoading="@{viewModel.questionsList}"
-            app:lottie_rawRes="@raw/loading_cat"
+            app:lottie_rawRes="@raw/loading_game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
