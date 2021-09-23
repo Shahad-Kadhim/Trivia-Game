@@ -2,7 +2,6 @@ package com.example.triviatask.utils
 
 import android.R
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -11,10 +10,9 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.triviatask.model.State
 import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
-import com.example.triviatask.ui.game.CheckOptions
+import com.example.triviatask.model.data.domain.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
 import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
 import com.mcdev.quantitizerlibrary.QuantitizerListener

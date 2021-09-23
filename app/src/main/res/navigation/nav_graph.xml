@@ -31,7 +31,7 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="gameConfiguration"
-            app:argType="com.example.triviatask.model.GameConfiguration" />
+            app:argType="com.example.triviatask.model.data.domain.GameConfiguration" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"

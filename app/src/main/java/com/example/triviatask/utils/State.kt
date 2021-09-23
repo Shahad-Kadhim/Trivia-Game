@@ -1,4 +1,4 @@
-package com.example.triviatask.model
+package com.example.triviatask.utils
 
 sealed class State<out T> {
 

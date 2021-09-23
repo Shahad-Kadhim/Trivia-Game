@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.triviatask.R
 import com.example.triviatask.databinding.FragmentHomeBinding
-import com.example.triviatask.model.State
+import com.example.triviatask.utils.State
 import com.example.triviatask.ui.base.BaseFragment
 import com.example.triviatask.utils.EventObserver
 import com.example.triviatask.utils.goToFragment

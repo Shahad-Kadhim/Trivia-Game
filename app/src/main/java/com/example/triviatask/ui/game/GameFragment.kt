@@ -1,7 +1,6 @@
 package com.example.triviatask.ui.game
 
 import android.annotation.SuppressLint
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

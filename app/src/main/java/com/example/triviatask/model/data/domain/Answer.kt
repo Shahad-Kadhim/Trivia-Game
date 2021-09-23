@@ -1,4 +1,4 @@
-package com.example.triviatask.ui.game
+package com.example.triviatask.model.data.domain
 
 data class Answer(
     val answer: String,

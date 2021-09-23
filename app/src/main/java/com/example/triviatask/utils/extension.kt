@@ -9,8 +9,8 @@ import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResponse
 import com.example.triviatask.model.data.response.triviaStart.TriviaStartResult
-import com.example.triviatask.ui.game.Answer
-import com.example.triviatask.ui.game.CheckOptions
+import com.example.triviatask.model.data.domain.Answer
+import com.example.triviatask.model.data.domain.CheckOptions
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 

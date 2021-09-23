@@ -3,8 +3,8 @@ package com.example.triviatask.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.model.Repository
-import com.example.triviatask.model.GameConfiguration
-import com.example.triviatask.model.State
+import com.example.triviatask.model.data.domain.GameConfiguration
+import com.example.triviatask.utils.State
 import com.example.triviatask.model.data.response.apiCategory.ApiCategoryResponse
 import com.example.triviatask.ui.base.BaseViewModel
 import com.example.triviatask.utils.Constant

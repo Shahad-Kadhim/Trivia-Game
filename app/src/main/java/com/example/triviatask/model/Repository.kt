@@ -1,6 +1,7 @@
 package com.example.triviatask.model
 
 import com.example.triviatask.model.network.API
+import com.example.triviatask.utils.State
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import com.example.triviatask.utils.convertToLocalTriviaStartResponse

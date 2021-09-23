@@ -2,7 +2,9 @@ package com.example.triviatask.ui.game
 
 import androidx.lifecycle.MutableLiveData
 import com.example.triviatask.model.Repository
-import com.example.triviatask.model.State
+import com.example.triviatask.utils.State
+import com.example.triviatask.model.data.domain.Answer
+import com.example.triviatask.model.data.domain.CheckOptions
 import com.example.triviatask.model.data.domain.LocalTriviaStart
 import com.example.triviatask.model.data.domain.LocalTriviaStartResponse
 import com.example.triviatask.ui.base.BaseViewModel

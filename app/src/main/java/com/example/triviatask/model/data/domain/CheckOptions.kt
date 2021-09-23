@@ -1,4 +1,4 @@
-package com.example.triviatask.ui.game
+package com.example.triviatask.model.data.domain
 
 enum class CheckOptions {
     UNSELECTED,

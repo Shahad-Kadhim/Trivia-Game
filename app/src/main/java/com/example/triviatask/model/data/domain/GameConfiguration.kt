@@ -1,4 +1,4 @@
-package com.example.triviatask.model
+package com.example.triviatask.model.data.domain
 
 import android.annotation.SuppressLint
 import android.os.Parcel

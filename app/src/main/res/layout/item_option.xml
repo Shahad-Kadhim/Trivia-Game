@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.triviatask.ui.game.Answer" />
+            type="com.example.triviatask.model.data.domain.Answer" />
 
         <variable
             name="listener"
