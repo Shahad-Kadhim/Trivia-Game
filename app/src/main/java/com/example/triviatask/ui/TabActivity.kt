@@ -16,6 +16,7 @@ class TabActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_TriviaTask)
         DataBindingUtil.setContentView<ActivityTabBinding>(
             this,
             R.layout.activity_tab
