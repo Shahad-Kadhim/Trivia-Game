@@ -9,12 +9,13 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.example.triviatask.model.State
 import com.example.triviatask.model.data.response.apiCategory.TriviaCategory
 import com.example.triviatask.ui.base.BaseAdapter
 import com.example.triviatask.ui.game.CheckOptions
 import com.example.triviatask.utils.Constant.LEMON_TAG
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer
+import com.mcdev.quantitizerlibrary.QuantitizerListener
 
 
 @BindingAdapter(value = ["app:entries"])
@@ -75,43 +76,43 @@ fun setRadioListener(view: RadioGroup, attChange: InverseBindingListener) {
         attChange.onChange()
     }
 }
-//
-//
-//@BindingAdapter(value = ["minValue"])
-//fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
-//    value?.let { view.minValue = it }
-//}
-//
-//@BindingAdapter(value = ["maxValue"])
-//fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
-//    value?.let { view.maxValue = it }
-//}
-//
-//
-//@BindingAdapter(value = ["value"])
-//fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
-//    if (view.value != value) {
-//        value?.let { view.value = it }
-//    }
-//}
-//
-//@InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
-//fun getPikerNumber(view: HorizontalQuantitizer): Int? {
-//    return view.value
-//}
-//
-//@BindingAdapter("pikerNumberChangeEvent")
-//fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
-//    view.setQuantitizerListener(object : QuantitizerListener {
-//        override fun onDecrease() {
-//            attChange.onChange()
-//        }
-//
-//        override fun onIncrease() {
-//            attChange.onChange()
-//        }
-//    })
-//}
+
+
+@BindingAdapter(value = ["minValue"])
+fun setNumberPikerMinValue(view: HorizontalQuantitizer, value: Int?) {
+    value?.let { view.minValue = it }
+}
+
+@BindingAdapter(value = ["maxValue"])
+fun setNumberPikerMaxValue(view: HorizontalQuantitizer, value: Int?) {
+    value?.let { view.maxValue = it }
+}
+
+
+@BindingAdapter(value = ["value"])
+fun setPikerNumber(view: HorizontalQuantitizer, value: Int?) {
+    if (view.value != value) {
+        value?.let { view.value = it }
+    }
+}
+
+@InverseBindingAdapter(attribute = "value", event = "pikerNumberChangeEvent")
+fun getPikerNumber(view: HorizontalQuantitizer): Int? {
+    return view.value
+}
+
+@BindingAdapter("pikerNumberChangeEvent")
+fun setPikerListener(view: HorizontalQuantitizer, attChange: InverseBindingListener) {
+    view.setQuantitizerListener(object : QuantitizerListener {
+        override fun onDecrease() {
+            attChange.onChange()
+        }
+
+        override fun onIncrease() {
+            attChange.onChange()
+        }
+    })
+}
 
 @BindingAdapter(value = ["app:optionsBackgroundColor"])
 fun setBackgroundColor(view: View, state: CheckOptions) {
@@ -124,29 +125,29 @@ fun setBackgroundColor(view: View, state: CheckOptions) {
     }
 }
 
-@BindingAdapter(value = ["app:ifWinner"  , "app:total"])
-fun checkWinner(view: TextView, valueScore: Int , totalNumber: Int) {
-    view.text = if(valueScore > totalNumber/2 ) { "You Win" }
-                else {  "You Lost"}
+@BindingAdapter(value = ["app:ifWinner"])
+fun checkWinner(view: TextView, valueScore: Int) {
+    when {
+        valueScore < 5 -> {
+            view.text = "You Lost"
+        }
+        else -> {
+            view.text = "You Win"
+        }
+    }
 }
 
 
-@BindingAdapter(value = ["app:ifCongrats" , "app:total"])
-fun checkCongrats(view: TextView, valueScore: Int , totalNumber: Int) {
-    view.text = if(valueScore > totalNumber/2 ) {  "Congrats!"  }
-                else { "Hard Luck!" }
-}
-
-@BindingAdapter(value = ["app:ifCelebration"  , "app:total"])
-fun checkCelebration(view: View, valueScore: Int, totalNumber: Int) {
-    view.visibility = if(valueScore > totalNumber/2 ) { View.VISIBLE }
-                      else { View.GONE }
-}
-
-@BindingAdapter(value = ["app:ifLost"  , "app:total"])
-fun checkLost(view: View, valueScore: Int, totalNumber: Int) {
-    view.visibility = if(valueScore < totalNumber/2 ) { View.VISIBLE }
-    else { View.GONE }
+@BindingAdapter(value = ["app:ifCongrats"])
+fun checkCongrats(view: TextView, valueScore: Int) {
+    when {
+        valueScore < 5 -> {
+            view.text = "Hard Luck!"
+        }
+        else -> {
+            view.text = "Congrats!"
+        }
+    }
 }
 
 
@@ -162,7 +163,7 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) =
 
 @BindingAdapter(value = ["app:showOnSuccess"])
 fun <T> showOnSuccess(view: View, state: State<T>?) {
-    if (state != null) {
+    if (state != null){
         view.visibility =
             if (state is State.Success) {
                 View.VISIBLE
@@ -174,7 +175,7 @@ fun <T> showOnSuccess(view: View, state: State<T>?) {
 
 @BindingAdapter(value = ["app:showOnError"])
 fun <T> showOnError(view: View, state: State<T>?) {
-    if (state != null) {
+    if (state != null){
         view.visibility =
             if (state is State.Error) {
                 View.VISIBLE
@@ -186,7 +187,7 @@ fun <T> showOnError(view: View, state: State<T>?) {
 
 @BindingAdapter(value = ["app:showOnLoading"])
 fun <T> showOnLoading(view: View, state: State<T>?) {
-    if (state != null) {
+    if (state != null){
         view.visibility =
             if (state is State.Loading) {
                 View.VISIBLE

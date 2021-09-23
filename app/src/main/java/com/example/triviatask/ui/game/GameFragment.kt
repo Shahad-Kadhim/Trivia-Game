@@ -50,9 +50,13 @@ class GameFragment : BaseFragment<FragmentGameBinding>() {
 
 
     private fun setScoreToResultNavigation() {
-        viewModel.scoreOfQuestionEvent.observe(this , EventObserver {
-            view?.goToFragment( GameFragmentDirections.actionGameFragmentToResultFragment(it,
-                args.gameConfiguration.questionNumber))
+        viewModel.scoreOfQuestionEvent.observe(this, EventObserver {
+            view?.goToFragment(
+                GameFragmentDirections.actionGameFragmentToResultFragment(
+                    it,
+                    args.gameConfiguration.questionNumber
+                )
+            )
         })
     }
 
