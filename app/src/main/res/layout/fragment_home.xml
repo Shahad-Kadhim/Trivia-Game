@@ -157,7 +157,6 @@
             android:text="Start Game"
             android:textSize="24sp"
             android:visibility="invisible"
-
             android:paddingLeft="32dp"
             android:paddingTop="24dp"
             android:paddingRight="32dp"

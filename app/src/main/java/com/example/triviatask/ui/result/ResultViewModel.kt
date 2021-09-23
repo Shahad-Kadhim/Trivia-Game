@@ -7,10 +7,12 @@ import com.example.triviatask.utils.Event
 class ResultViewModel: BaseViewModel() {
 
     var finalScore = MutableLiveData<Int>()
+    var totalNumberScore = MutableLiveData<Int>()
     var liveDataEvent = MutableLiveData<Event<Boolean>>()
 
-    fun setScore(score: Int){
+    fun setScore(score: Int , totalNumber:Int){
         finalScore.postValue(score)
+        totalNumberScore.postValue(totalNumber)
     }
 
     fun onClickExist(){
