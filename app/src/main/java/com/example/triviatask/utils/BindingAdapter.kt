@@ -217,7 +217,7 @@ fun checkCelebration(view: View, valueScore: Int, totalNumber: Int) {
 
 @BindingAdapter(value = ["app:ifLost"  , "app:total"])
 fun checkLost(view: View, valueScore: Int, totalNumber: Int) {
-    view.visibility = if(valueScore < totalNumber/2 ) { View.VISIBLE }
+    view.visibility = if(valueScore <= totalNumber/2 ) { View.VISIBLE }
     else { View.GONE }
 }
 
