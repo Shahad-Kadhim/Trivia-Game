@@ -30,6 +30,6 @@
             android:onClick="@{() -> listener.onClickOption(item)}"
             android:textColor="@color/primary_text_color"
             android:textStyle="bold"
-            android:background="#FAF9F8" />
+            android:background="@drawable/default_options_background" />
     </androidx.cardview.widget.CardView>
 </layout>
